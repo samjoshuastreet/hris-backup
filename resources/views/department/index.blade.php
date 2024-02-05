@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-   @include('layouts.components.head')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @include('layouts.components.head')
     <body data-sidebar="dark">
         @if ($message = Session::get('success'))                     
             <script>
@@ -66,14 +67,14 @@
                                                         <table class="table mb-0">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>#</th>
+                                                                    <th>Deparment ID No.</th>
                                                                     <th>Department Name</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 @foreach ($department as $department)
-                                                                    <tr data-id="1" style="cursor: pointer;">
+                                                                    <tr data-id="{{$department->id}}" style="cursor: pointer;">
                                                                         <td data-field="id" style="width: 80px">
                                                                             <label id="label_deptid-{{$department->id}}">{{$department->id}}</label>
                                                                             <input type="text" id="department_id-{{$department->id}}" class="form-control" value="{{$department->id}}" hidden disabled>
@@ -81,18 +82,24 @@
                                                                         <td data-field="name" style="width: 337.422px;">
                                                                             <label id="label_deptname-{{$department->id}}">{{$department->department_name}}</label>
                                                                             <input type="text" id="department_name-{{$department->id}}" class="form-control" value="{{$department->department_name}}" hidden>
+                                                                            <span id="department_name-{{$department->id}}-msg" class="text-danger"></span>
                                                                         </td>
                                                                         <td style="width: 100px">
+                                                                           
                                                                             <a class="btn btn-outline-secondary btn-sm edit" id="edit-{{$department->id}}" title="Edit" onclick="editChanges({{$department->id}})">
                                                                                 <i class="fas fa-pencil-alt" title="Edit"></i>
                                                                             </a>
+                                                                          
                                                                             <a class="btn btn-outline-success btn-sm save" id="save-{{$department->id}}" title="Save" onclick="saveChanges({{$department->id}})" hidden>
                                                                                 <i class="fas fa-save" title="Save"></i>
                                                                             </a>
-                                                                            <a class="btn btn-outline-warning btn-sm save" id="cancel-{{$department->id}}" title="Cancel" onclick="cancelChanges({{$department->id}})" hidden>
+                                                                            <a class="btn btn-outline-warning btn-sm cancel" id="cancel-{{$department->id}}" title="Cancel" onclick="cancelChanges({{$department->id}})" hidden>
                                                                                 <i class="bx bx-error" title="Cancel"></i>
                                                                             </a>
-                                                                            <a class="btn btn-outline-danger btn-sm save" id="delete-{{$department->id}}" title="Delete" data-department-id="{{$department->id}}">
+                                                                            {{-- <a class="btn btn-outline-danger btn-sm deleteButton" id="delete-{{$department->id}}" title="Delete" data-department-id="{{$department->id}}">
+                                                                                <i class="bx bx-trash" title="Delete"></i>
+                                                                            </a> --}}
+                                                                            <a class="btn btn-outline-danger btn-sm delete" id="delete-{{$department->id}}" title="Delete" onclick="deleteDepartment({{$department->id}})">
                                                                                 <i class="bx bx-trash" title="Delete"></i>
                                                                             </a>
                                                                         </td>
@@ -147,60 +154,7 @@
                 @include('layouts.components.footer')
             </div>
         </div>
-        {{-- <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title d-flex align-items-center px-3 py-4">
-            
-                    <h5 class="m-0 me-2">Settings</h5>
-
-                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
-                </div>
-
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h6 class="text-center mb-0">Choose Layouts</h6>
-
-                <div class="p-4">
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-1.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
-                        <label class="form-check-label" for="light-mode-switch">Light Mode</label>
-                    </div>
-    
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-2.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch">
-                        <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
-                    </div>
-    
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-3.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch">
-                        <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-4.jpg" class="img-thumbnail" alt="layout images">
-                    </div>
-                    <div class="form-check form-switch mb-5">
-                        <input class="form-check-input theme-choice" type="checkbox" id="dark-rtl-mode-switch">
-                        <label class="form-check-label" for="dark-rtl-mode-switch">Dark RTL Mode</label>
-                    </div>
-
-            
-                </div>
-
-            </div> <!-- end slimscroll-menu-->
-        </div> --}}
+        
         @include('layouts.components.script')
     </body>
     <script>
@@ -231,7 +185,6 @@
                     top.location.href = "/department";
                 },
                 error: function(reject){
-            
                     $(".btn").attr("disabled", false);
                     var errors = $.parseJSON(reject.responseText);
                     $.each(errors.errors, function (field, messages) {
@@ -254,6 +207,38 @@
             $("#save-" + id).attr("hidden", false);
             $("#cancel-" + id).attr("hidden", false);
         }
+
+        function saveChanges(id) {
+            var department_name = $("#department_name-" + id).val();
+            $.ajax({
+                method: 'post',
+                url: '/department/update/' + id,
+                data: {
+                    department_name: department_name,
+                    _token: $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (response) => { 
+                    Swal.fire({
+                        position: 'center-center',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: true,
+                        timer: 1200,
+                    });
+                    window.location.href = "/department";
+                },
+                error: function(reject){
+                    $(".btn").attr("disabled", false);
+                    var errors = $.parseJSON(reject.responseText);
+                    $.each(errors.errors, function (field, messages) {
+                        $("#" + field).css('border', '1px solid red');
+                        // Display the first error message
+                        $("span#" + field + "-msg").text(messages[0]);
+                    });
+                }
+            });
+        }
+
         function cancelChanges(id){
             $("#department_id-" + id).attr("hidden", true);
             $("#department_name-" + id).attr("hidden", true);
@@ -266,8 +251,41 @@
             $("#save-" + id).attr("hidden", true);
             $("#cancel-" + id).attr("hidden", true);
         }
-        function deleteChanges(id){
 
+        function deleteDepartment(id){
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this department!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        method: 'POST',
+                        url: '/department/delete/' + id,
+                        success: function (response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Department deleted successfully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            top.location.href = "/department";
+                        },
+                        error: function (reject) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error deleting department',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
         }
     </script>
 </html>
