@@ -36,7 +36,7 @@
         <div class="dropdown dropdown-mega d-none d-lg-block ms-2">
             <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                 <span key="t-megamenu">Mega Menu</span>
-                <i class="mdi mdi-chevron-down"></i> 
+                <i class="mdi mdi-chevron-down"></i>
             </button>
             <div class="dropdown-menu dropdown-megamenu">
                 <div class="row">
@@ -118,7 +118,7 @@
                                     <li>
                                         <a href="javascript:void(0);" key="t-faqs">FAQs</a>
                                     </li>
-            
+
                                 </ul>
                             </div>
                         </div>
@@ -360,7 +360,7 @@
                 </div>
                 <div class="p-2 border-top d-grid">
                     <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
-                        <i class="mdi mdi-arrow-right-circle me-1"></i> <span key="t-view-more">View More..</span> 
+                        <i class="mdi mdi-arrow-right-circle me-1"></i> <span key="t-view-more">View More..</span>
                     </a>
                 </div>
             </div>
@@ -381,7 +381,7 @@
                 <a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end">11</span><i class="bx bx-wrench font-size-16 align-middle me-1"></i> <span key="t-settings">Settings</span></a>
                 <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle me-1"></i> <span key="t-lock-screen">Lock screen</span></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item text-danger" href="#"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
+                <a class="dropdown-item text-danger" href="{{route('logout')}}"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span key="t-logout">Logout</span></a>
             </div>
         </div>
 
