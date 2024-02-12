@@ -8,8 +8,8 @@
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboards</a></li>
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
+                        <li class="breadcrumb-item active">HRIS</li>
                     </ol>
                 </div>
 
@@ -19,6 +19,20 @@
     <!-- end page title -->
 
     <div class="row">
+        @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="mdi mdi-alert-outline me-2"></i>
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+        @if(session('error'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <i class="mdi mdi-alert-outline me-2"></i>
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="col-xl-4">
             <div class="card overflow-hidden">
                 <div class="bg-primary-subtle">
@@ -171,7 +185,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div id="stacked-column-chart" class="apex-charts" data-colors='["--bs-primary", "--bs-warning", "--bs-success"]' dir="ltr"></div>
                 </div>
             </div>
@@ -187,8 +201,8 @@
                     <div class="text-center">
                         <div class="avatar-sm mx-auto mb-4">
                             <span class="avatar-title rounded-circle bg-primary-subtle font-size-24">
-                                    <i class="mdi mdi-facebook text-primary"></i>
-                                </span>
+                                <i class="mdi mdi-facebook text-primary"></i>
+                            </span>
                         </div>
                         <p class="font-16 text-muted mb-2"></p>
                         <h5><a href="javascript: void(0);" class="text-dark">Facebook - <span class="text-muted font-16">125 sales</span> </a></h5>
@@ -200,8 +214,8 @@
                             <div class="social-source text-center mt-3">
                                 <div class="avatar-xs mx-auto mb-3">
                                     <span class="avatar-title rounded-circle bg-primary font-size-16">
-                                            <i class="mdi mdi-facebook text-white"></i>
-                                        </span>
+                                        <i class="mdi mdi-facebook text-white"></i>
+                                    </span>
                                 </div>
                                 <h5 class="font-size-15">Facebook</h5>
                                 <p class="text-muted mb-0">125 sales</p>
@@ -211,8 +225,8 @@
                             <div class="social-source text-center mt-3">
                                 <div class="avatar-xs mx-auto mb-3">
                                     <span class="avatar-title rounded-circle bg-info font-size-16">
-                                            <i class="mdi mdi-twitter text-white"></i>
-                                        </span>
+                                        <i class="mdi mdi-twitter text-white"></i>
+                                    </span>
                                 </div>
                                 <h5 class="font-size-15">Twitter</h5>
                                 <p class="text-muted mb-0">112 sales</p>
@@ -222,8 +236,8 @@
                             <div class="social-source text-center mt-3">
                                 <div class="avatar-xs mx-auto mb-3">
                                     <span class="avatar-title rounded-circle bg-pink font-size-16">
-                                            <i class="mdi mdi-instagram text-white"></i>
-                                        </span>
+                                        <i class="mdi mdi-instagram text-white"></i>
+                                    </span>
                                 </div>
                                 <h5 class="font-size-15">Instagram</h5>
                                 <p class="text-muted mb-0">104 sales</p>
@@ -326,7 +340,8 @@
                                         <p class="mb-0">San Francisco</p>
                                     </td>
                                     <td style="width: 25%">
-                                        <h5 class="mb-0">1,456</h5></td>
+                                        <h5 class="mb-0">1,456</h5>
+                                    </td>
                                     <td>
                                         <div class="progress bg-transparent progress-sm">
                                             <div class="progress-bar bg-primary rounded" role="progressbar" style="width: 94%" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100"></div>

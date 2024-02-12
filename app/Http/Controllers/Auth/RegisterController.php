@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Unique;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Validation\ValidationException;
 
 class RegisterController extends Controller
 {
@@ -68,5 +71,42 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function index()
+    {
+        return view('auth.register');
+    }
+
+    public function register_user(Request $request)
+    {
+        $new_user = new User();
+
+        try {
+            $data = $request->validate([
+                'email' => 'required|unique:users',
+                'password' => [
+                    'required',
+                    'string',
+                    'min:8',
+                    'regex:/^(?=.*[0-9])/',
+                ],
+                'name' => 'required'
+            ]);
+
+            $new_user->name = $request->name;
+            $new_user->email = $request->email;
+            $new_user->password = $request->password;
+            $new_user->save();
+
+            return redirect('register')->with(['success' => 'Successfully created user!']);
+        } catch (ValidationException $e) {
+            // Handle validation errors
+            return redirect()->route('register')->withErrors($e->errors())->withInput();
+        }
+
+
+
+        return redirect('home');
     }
 }

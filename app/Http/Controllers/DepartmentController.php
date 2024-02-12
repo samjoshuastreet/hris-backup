@@ -8,10 +8,33 @@ use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
-    public function index(Department $department){
-        $department = Department::orderBy('id','DESC')->paginate(10);
-        return view('department.index',compact('department'));
+    public function index(Department $department)
+    {
+        $departments = Department::orderBy('id')->get();
+        return view('departments.index', compact('departments'));
     }
+
+    public function create(Request $request)
+    {
+        $department_id = $request->id;
+
+        $department = Department::updateOrCreate(
+            [
+                'id' => $department_id
+            ],
+            [
+                'department_name' => $request->department_name,
+                'description' => $request->description,
+                'location' => $request->location,
+                'contact_number' => $request->contact_number,
+                'email_address' => $request->email_address,
+                'number_of_employees' => $request->number_of_employees,
+                'status' => $request->status
+            ]
+        );
+        return Response()->json(['department => $department']);
+    }
+
 
     public function store(Request $request)
     {
@@ -34,8 +57,9 @@ class DepartmentController extends Controller
         return redirect('/department');
     }
 
-    public function update(Request $request, $id) {
-        
+    public function update(Request $request, $id)
+    {
+
         $validator = Validator::make($request->all(), [
             'department_name' => 'required',
         ]);
@@ -43,7 +67,7 @@ class DepartmentController extends Controller
             return response()->json(array(
                 'success' => false,
                 'errors' => $validator->getMessageBag()->toArray()
-        
+
             ), 400);
         }
         $dept = Department::find($id);
