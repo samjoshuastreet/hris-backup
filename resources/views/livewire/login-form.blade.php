@@ -3,6 +3,9 @@
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input wire:model="email" type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+        @error('email')
+        <small id="emailHelp" class="form-text text-muted">{{ $message }}</small>
+        @enderror
     </div>
 
     <div class="mb-3">
@@ -14,6 +17,9 @@
             <input wire:model="password" type="password" name="password" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
             <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
         </div>
+        @error('password')
+        <small id="emailHelp" class="form-text text-muted">{{ $message }}</small>
+        @enderror
     </div>
 
     <div class="form-check">
