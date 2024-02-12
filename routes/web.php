@@ -33,3 +33,5 @@ Route::post('/create', [DepartmentController::class, 'create'])->name('create');
 Route::post('/department/store', [DepartmentController::class, 'store'])->name('store');
 Route::post('/department/update/{id}', [DepartmentController::class, 'update'])->name('update');
 Route::post('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
+
+Route::get('/employees', [EmployeeController::class, 'index']);
