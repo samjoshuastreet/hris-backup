@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -34,3 +35,8 @@ Route::post('/create', [DepartmentController::class, 'create'])->name('create');
 Route::post('/department/store', [DepartmentController::class, 'store'])->name('store');
 Route::post('/department/update/{id}', [DepartmentController::class, 'update'])->name('update');
 Route::post('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
+Route::post('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
+
+// Route::post('/department/store', [DepartmentController::class, 'store'])->name('department.store');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/', [AuthController::class, 'logout'])->name('logout');
