@@ -18,6 +18,7 @@ class DepartmentList extends Component
     public function delete($id)
     {
         Department::find($id)->delete();
+        $this->refreshDepartmentList();
         $this->dispatch('refreshComponent');
     }
 

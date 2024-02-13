@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Sidebar extends Component
 {
-    protected $listeners = ['departmentCreated' => 'render'];
+    protected $listeners = ['departmentCreated' => 'render', 'refreshComponent' => 'render'];
 
     public function render()
     {
