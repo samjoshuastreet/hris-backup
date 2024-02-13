@@ -35,6 +35,11 @@ class DepartmentController extends Controller
         return Response()->json(['department => $department']);
     }
 
+    public function view_department($id)
+    {
+        $department = Department::find($id);
+        return view('departments.department_viewer', compact('department'));
+    }
 
     public function store(Request $request)
     {

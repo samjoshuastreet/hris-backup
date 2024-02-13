@@ -1,8 +1,8 @@
-<form wire:submit.prevent="create" action="">
+<form wire:submit.prevent="update_record" action="">
     @csrf
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="myMediumModalLabel">Add New Department</h5>
+            <h5 class="modal-title" id="myMediumModalLabel">Update Department</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -70,7 +70,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="mb-4 row">
+            <div class="mb-4 row mt-3">
                 <label for="status" class="form-label col-form-label col-md-4">Status</label>
                 <div class="col-md-8">
                     <select wire:model="status" class="form-control select2 status" name="status">
@@ -89,7 +89,7 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-primary waves-effect btn-label waves-light addBtn">
                     <i class="bx bx-smile label-icon"></i>
-                    Create
+                    Update
                 </button>
             </div>
         </div>

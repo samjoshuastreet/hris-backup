@@ -2,9 +2,10 @@
 
 namespace App\Livewire;
 
+use DB;
 use Livewire\Component;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\QueryException;
 use Illuminate\Validation\ValidationException;
 
 class LoginForm extends Component
@@ -20,7 +21,6 @@ class LoginForm extends Component
 
     public function login_user(Request $request)
     {
-
         $this->validate();
 
         $incomingFields = [

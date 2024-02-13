@@ -29,6 +29,7 @@ Route::resources([
 ]);
 
 Route::get('/departments', [DepartmentController::class, 'index'])->name('index');
+Route::get('/departments/{id}', [DepartmentController::class, 'view_department'])->name('view_department');
 Route::post('/create', [DepartmentController::class, 'create'])->name('create');
 Route::post('/department/store', [DepartmentController::class, 'store'])->name('store');
 Route::post('/department/update/{id}', [DepartmentController::class, 'update'])->name('update');

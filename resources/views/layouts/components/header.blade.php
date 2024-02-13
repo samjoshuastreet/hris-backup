@@ -4,19 +4,19 @@
         <div class="navbar-brand-box">
             {{-- <a href="index.html" class="logo logo-dark">
                 <span class="logo-sm">
-                    <img src="{{ url('assets/images/pixzel_image.png') }}" alt="" height="22">
+                    <img src="{{ asset('assets/images/pixzel_image.png') }}" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ url('assets/images/pixzel_image.png') }}" alt="" height="17">
+                <img src="{{ asset('assets/images/pixzel_image.png') }}" alt="" height="17">
             </span>
             </a> --}}
 
             <a href="" class="logo logo-light">
                 <span class="logo-sm">
-                    <img src="{{ url('assets/images/logo-circ-min.png') }}" alt="" height="22">
+                    <img src="{{ asset('assets/images/logo-circ-min.png') }}" alt="" height="22">
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ url('assets/images/logo-circ-min.png') }}" alt="" height="50" width="50">
+                    <img src="{{ asset('assets/images/logo-circ-min.png') }}" alt="" height="50" width="50">
                 </span>
             </a>
         </div>
@@ -154,7 +154,7 @@
 
                             <div class="col-sm-5">
                                 <div>
-                                    <img src="assets/images/megamenu-img.png" alt="" class="img-fluid mx-auto d-block">
+                                    <img src="{{ asset('assets/images/megamenu-img.png') }}" alt="" class="img-fluid mx-auto d-block">
                                 </div>
                             </div>
                         </div>
@@ -188,32 +188,32 @@
 
         <div class="dropdown d-inline-block">
             <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img id="header-lang-img" src="assets/images/flags/us.jpg" alt="Header Language" height="16">
+                <img id="header-lang-img" src="{{ asset('assets/images/flags/us.jpg') }}" alt="Header Language" height="16">
             </button>
             <div class="dropdown-menu dropdown-menu-end">
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="en">
-                    <img src="assets/images/flags/us.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
+                    <img src="{{ asset('assets/images/flags/us.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">English</span>
                 </a>
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="sp">
-                    <img src="assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
+                    <img src="{{ asset('assets/images/flags/spain.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
                 </a>
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="gr">
-                    <img src="assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
+                    <img src="{{ asset('assets/images/flags/germany.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
                 </a>
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="it">
-                    <img src="assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
+                    <img src="{{ asset('assets/images/flags/italy.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
                 </a>
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item language" data-lang="ru">
-                    <img src="assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
+                    <img src="{{ asset('assets/images/flags/russia.jpg') }}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
                 </a>
             </div>
         </div>
@@ -227,19 +227,19 @@
                     <div class="row g-0">
                         <div class="col">
                             <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/github.png" alt="Github">
+                                <img src="{{ asset('assets/images/brands/github.png') }}" alt="Github">
                                 <span>GitHub</span>
                             </a>
                         </div>
                         <div class="col">
                             <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/bitbucket.png" alt="bitbucket">
+                                <img src="{{ asset('assets/images/brands/bitbucket.png') }}" alt="bitbucket">
                                 <span>Bitbucket</span>
                             </a>
                         </div>
                         <div class="col">
                             <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/dribbble.png" alt="dribbble">
+                                <img src="{{ asset('assets/images/brands/dribbble.png') }}" alt="dribbble">
                                 <span>Dribbble</span>
                             </a>
                         </div>
@@ -248,19 +248,19 @@
                     <div class="row g-0">
                         <div class="col">
                             <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/dropbox.png" alt="dropbox">
+                                <img src="{{ asset('assets/images/brands/dropbox.png') }}" alt="dropbox">
                                 <span>Dropbox</span>
                             </a>
                         </div>
                         <div class="col">
                             <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/mail_chimp.png" alt="mail_chimp">
+                                <img src="{{ asset('assets/images/brands/mail_chimp.png') }}" alt="mail_chimp">
                                 <span>Mail Chimp</span>
                             </a>
                         </div>
                         <div class="col">
                             <a class="dropdown-icon-item" href="#">
-                                <img src="assets/images/brands/slack.png" alt="slack">
+                                <img src="{{ asset('assets/images/brands/slack.png') }}" alt="slack">
                                 <span>Slack</span>
                             </a>
                         </div>
@@ -360,7 +360,7 @@
 
         <div class="dropdown d-inline-block">
             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar">
+                <img class="rounded-circle header-profile-user" src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
                 <span class="d-none d-xl-inline-block ms-1" key="t-henry">Henry</span>
                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
             </button>

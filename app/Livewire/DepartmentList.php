@@ -21,6 +21,11 @@ class DepartmentList extends Component
         $this->dispatch('refreshComponent');
     }
 
+    public function update($id)
+    {
+        $this->dispatch('update', ['id' => $id]);
+    }
+
     public function render()
     {
         $departments = Department::all();

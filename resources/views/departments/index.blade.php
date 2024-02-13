@@ -24,7 +24,7 @@
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
-                    @include('layouts.components.sidebar')
+                    <livewire:Sidebar />
                 </div>
                 <!-- Sidebar -->
             </div>
@@ -143,6 +143,14 @@
 
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
+
+                                    <div id="create_modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myMediumModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+
+                                            <livewire:DepartmentFormUpdate />
+
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
                                 </div>
                             </div><!--end card-->
                         </div><!--end col-->
@@ -242,7 +250,6 @@
 
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
-
     @include('layouts.components.script')
     @livewireScripts
 </body>

@@ -16,8 +16,19 @@ class DepartmentForm extends Component
     public $number_of_employees;
     public $status;
 
+    protected $rules = [
+        'department_name' => 'required',
+        'description' => 'required|min:20|max:225',
+        'location' => 'nullable',
+        'contact_number' => 'required|max:13',
+        'email_address' => 'required|email|unique:departments',
+        'number_of_employees' => 'required',
+        'status' => 'required'
+    ];
+
     public function create()
     {
+        $this->validate();
         Department::create([
             'department_name' => $this->department_name,
             'description' => $this->description,

@@ -3,7 +3,8 @@
     <tr>
         <th scope="row">{{ $department->id }}</th>
         <td>
-            {{ $department->department_name }}
+            <a href="javascript: void(0);" id="inline-username" data-type="text" data-pk="{{ $department->id }}" data-title="Enter username" class="editable editable-click">{{ $department->department_name }}</a>
+        </td>
         <td>
             {{ $department->description }}
         </td>
@@ -18,18 +19,17 @@
         </td>
         <td>
             {{ $department->number_of_employees }}
-
         </td>
-        <td>{{ $department->status }}</td>
+        <td><span class="badge badge-soft-success">{{ $department->status }}</span></td>
         <td>
             <ul class="list-unstyled hstack gap-1 mb-0">
                 <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
                     <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
                 </li>
                 <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                    <button wire:click="update({{ $department->id }})" href="#" class="btn btn-sm btn-soft-info" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg"><i class="mdi mdi-pencil-outline"></i></a>
+                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
                 </li>
-                <li>
+                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                     <button wire:click="delete({{ $department->id }})" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
                 </li>
             </ul>
