@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('department_name');
-            $table->string('designtion');
+            $table->string('designation');
             $table->string('contact_number', 25);
             $table->string('email_address', 255);
             $table->string('status', 20);

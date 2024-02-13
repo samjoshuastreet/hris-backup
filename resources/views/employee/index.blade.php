@@ -91,7 +91,7 @@
                                                     <th scope="col">ID</th>
                                                     <th scope="col">Name</th>
                                                     <th scope="col">Description</th>
-                                                    <th scope="col">Designtion</th>
+                                                    <th scope="col">Designation</th>
                                                     <th scope="col">Contact Number</th>
                                                     <th scope="col">Email Address</th>
                                                     <th scope="col">Status</th>
