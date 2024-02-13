@@ -3,7 +3,7 @@
     <tr>
         <th scope="row">{{ $department->id }}</th>
         <td>
-            <a href="javascript: void(0);" id="inline-username" data-type="text" data-pk="{{ $department->id }}" data-title="Enter username" class="editable editable-click">{{ $department->department_name }}</a>
+            {{ $department->department_name }}
         </td>
         <td>
             {{ $department->description }}
@@ -40,4 +40,7 @@
         No records found
     </tr>
     @endforelse
+    <<<<<<< HEAD </tbody>
+        =======
 </tbody>
+>>>>>>> origin/viewEmployees-ui

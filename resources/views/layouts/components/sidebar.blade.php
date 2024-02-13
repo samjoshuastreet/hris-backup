@@ -29,7 +29,7 @@
         </ul>
     </li>
     <li>
-        <a href="/employee">
+        <a href="/employees">
             <i class="bx bxs-user-detail"></i>
             <span key="t-contacts">Employee</span>
         </a>

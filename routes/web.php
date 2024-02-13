@@ -40,3 +40,5 @@ Route::post('/department/delete/{id}', [DepartmentController::class, 'delete'])-
 // Route::post('/department/store', [DepartmentController::class, 'store'])->name('department.store');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/employees', [EmployeeController::class, 'index']);
