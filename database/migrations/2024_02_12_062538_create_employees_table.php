@@ -13,12 +13,22 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('department_name');
-            $table->string('designation');
-            $table->string('contact_number', 25);
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('first_name', 255);
+            $table->string('middle_name', 255);
+            $table->string('last_name', 255);
+            $table->string('gender', 25);
+            $table->string('contact_number', 20);
             $table->string('email_address', 255);
+            $table->date('date_of_birth', 20);
             $table->string('status', 20);
+            $table->string('permanent_address', 255);
+            $table->string('current_address', 255);
+            // $table->string('title', 20);
+            // $table->string('date_hired', 20);
+            // $table->string('salary', 20);
+            // $table->string('employment_type', 20);
+            $table->string('employee_photo', 255);
             $table->timestamps();
         });
     }

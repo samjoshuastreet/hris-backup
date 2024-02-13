@@ -2,6 +2,9 @@
 <html lang="en">
 
 @section('title', 'HRIS - Departments')
+@section('moreLinks')
+<link href="{{ asset('assets/libs/dropzone/dropzone.css') }}" rel="stylesheet" type="text/css" />
+@endsection
 @include('layouts.components.head')
 
 <body data-sidebar="dark">
@@ -24,7 +27,7 @@
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
-                    @include('layouts.components.sidebar')
+                    <livewire:Sidebar />
                 </div>
                 <!-- Sidebar -->
             </div>
@@ -49,7 +52,7 @@
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Department Manager</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Employee</a></li>
                                         <li class="breadcrumb-item active">HRIS</li>
                                     </ol>
                                 </div>
@@ -59,94 +62,13 @@
                     </div>
                     <!-- end page title -->
 
-
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card">
-                                <div class="card-body border-bottom">
-                                    <div class="d-flex align-items-center">
-                                        <h5 class="mb-0 card-title flex-grow-1">List of Employee</h5>
-                                        <div class="flex-shrink-0">
-                                            <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-md">Add New Employee</button>
-                                            <a href="#!" class="btn btn-light"><i class="mdi mdi-refresh"></i></a>
-                                            <div class="dropdown d-inline-block">
-
-                                                <button type="menu" class="btn btn-success" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><i class="mdi mdi-dots-vertical"></i></button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <span class="alert alert-success" id="alert-success" style="display: none;"></span>
-                                    <span class="alert alert-danger" id="alert-success" style="display: none;"></span>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered align-middle nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">ID</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Description</th>
-                                                    <th scope="col">Designation</th>
-                                                    <th scope="col">Contact Number</th>
-                                                    <th scope="col">Email Address</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <livewire:DepartmentList />
-                                        </table>
-                                    </div>
-                                    <div class="row justify-content-between align-items-center">
-                                        <div class="col-auto me-auto">
-                                            <p class="text-muted mb-0">Showing <b>1</b> to <b>12</b> of <b>45</b> entries</p>
-                                        </div>
-                                        <div class="col-auto">
-                                            <div class="card d-inline-block ms-auto mb-0">
-                                                <div class="card-body p-2">
-                                                    <nav aria-label="Page navigation example" class="mb-0">
-                                                        <ul class="pagination mb-0">
-                                                            <li class="page-item">
-                                                                <a class="page-link" href="javascript:void(0);" aria-label="Previous">
-                                                                    <span aria-hidden="true">&laquo;</span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
-                                                            <li class="page-item active"><a class="page-link" href="javascript:void(0);">2</a></li>
-                                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
-                                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">...</a></li>
-                                                            <li class="page-item"><a class="page-link" href="javascript:void(0);">12</a></li>
-                                                            <li class="page-item">
-                                                                <a class="page-link" href="javascript:void(0);" aria-label="Next">
-                                                                    <span aria-hidden="true">&raquo;</span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </nav>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--end col-->
-                                    </div>
-                                    <!--end row-->
-
-                                    <!-- Create a new department modal -->
-                                    <div id="create_modal" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myMediumModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-md">
-
-                                            <livewire:EmployeeForm />
-
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
-                                </div>
-                            </div><!--end card-->
-                        </div><!--end col-->
-
-                    </div><!--end row-->
+                                <livewire:EmployeeList />
+                            </div>
+                        </div>
+                    </div>
 
 
                 </div> <!-- container-fluid -->
@@ -173,6 +95,37 @@
                     </div>
                 </div>
             </div>
+
+            <!-- sample modal content -->
+            <div id="exampleModalFullscreen" class="modal fade" tabindex="-1" aria-labelledby="#exampleModalFullscreenLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalFullscreenLabel">Add an Employee</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+
+                                        <livewire:EmployeeForm />
+
+                                        <!-- end card body -->
+                                    </div>
+                                    <!-- end card -->
+                                </div>
+                                <!-- end col -->
+                            </div>
+                            <!-- end row -->
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 
 
             @include('layouts.components.footer')
@@ -241,7 +194,12 @@
 
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
-
+    @section('moreScripts')
+    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
+    <script src="{{ asset('assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/dropzone/dropzone-min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/form-file-upload.init.js') }}"></script>
+    @endsection
     @include('layouts.components.script')
     @livewireScripts
 </body>

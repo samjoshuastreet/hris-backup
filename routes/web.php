@@ -17,21 +17,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login_user', [LoginController::class, 'login_user'])->name('login_user');
 Route::get('/logout_user', [LoginController::class, 'logout_user'])->name('logout_user');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::get('/register_user', [RegisterController::class, 'register_user'])->name('home');
-
-Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.index');
 
 Route::resources([
     'roles' => RoleController::class,
     'users' => UserController::class,
 ]);
 
-Route::get('/departments', [DepartmentController::class, 'index'])->name('index');
+Route::get('/departments_manager', [DepartmentController::class, 'index'])->name('index');
 Route::get('/departments/{id}', [DepartmentController::class, 'view_department'])->name('view_department');
-Route::post('/create', [DepartmentController::class, 'create'])->name('create');
 Route::post('/department/store', [DepartmentController::class, 'store'])->name('store');
 Route::post('/department/update/{id}', [DepartmentController::class, 'update'])->name('update');
 Route::post('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('delete');

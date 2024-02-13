@@ -1,46 +1,308 @@
-<tbody>
-    @forelse($departments as $department)
-    <tr>
-        <th scope="row">{{ $department->id }}</th>
-        <td>
-            {{ $department->department_name }}
-        </td>
-        <td>
-            {{ $department->description }}
-        </td>
-        <td>
-            {{ $department->location }}
-        </td>
-        <td>
-            {{ $department->contact_number }}
-        </td>
-        <td>
-            {{ $department->email_address }}
-        </td>
-        <td>
-            {{ $department->number_of_employees }}
-        </td>
-        <td><span class="badge badge-soft-success">{{ $department->status }}</span></td>
-        <td>
-            <ul class="list-unstyled hstack gap-1 mb-0">
-                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
-                    <a href="job-details.html" class="btn btn-sm btn-soft-primary"><i class="mdi mdi-eye-outline"></i></a>
+<div class="card-body">
+    <div class="text-center">
+        <button type="button" class="btn btn-success waves-effect btn-label waves-light my-2" data-bs-toggle="modal" data-bs-target="#exampleModalFullscreen"><i class="bx bx-smile label-icon"></i> Add Employee</button>
+    </div>
+    <div class="table-responsive">
+        <table class="table align-middle table-nowrap table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col" style="width: 70px;">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col">Projects</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="avatar-xs">
+                            <span class="avatar-title rounded-circle">
+                                D
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">David McHenry</a></h5>
+                        <p class="text-muted mb-0">UI/UX Designer</p>
+                    </td>
+                    <td>david@skote.com</td>
+                    <td>
+                        <div>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Photoshop</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">illustrator</a>
+                        </div>
+                    </td>
+                    <td>
+                        125
+                    </td>
+                    <td>
+                        <ul class="list-inline font-size-20 contact-links mb-0">
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Message"><i class="bx bx-message-square-dots"></i></a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Profile"><i class="bx bx-user-circle"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <img class="rounded-circle avatar-xs" src="assets/images/users/avatar-2.jpg" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">Frank Kirk</a></h5>
+                        <p class="text-muted mb-0">Frontend Developer</p>
+                    </td>
+                    <td>frank@skote.com</td>
+                    <td>
+                        <div>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Html</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Css</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">2 + more</a>
+                        </div>
+                    </td>
+                    <td>
+                        132
+                    </td>
+                    <td>
+                        <ul class="list-inline font-size-20 contact-links mb-0">
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Message"><i class="bx bx-message-square-dots"></i></a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Profile"><i class="bx bx-user-circle"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <img class="rounded-circle avatar-xs" src="assets/images/users/avatar-3.jpg" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">Rafael Morales</a></h5>
+                        <p class="text-muted mb-0">Backend Developer</p>
+                    </td>
+                    <td>Rafael@skote.com</td>
+                    <td>
+                        <div>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Php</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Java</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Python</a>
+                        </div>
+                    </td>
+                    <td>
+                        112
+                    </td>
+                    <td>
+                        <ul class="list-inline font-size-20 contact-links mb-0">
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Message"><i class="bx bx-message-square-dots"></i></a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Profile"><i class="bx bx-user-circle"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="avatar-xs">
+                            <span class="avatar-title rounded-circle">
+                                M
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">Mark Ellison</a></h5>
+                        <p class="text-muted mb-0">Full Stack Developer</p>
+                    </td>
+                    <td>mark@skote.com</td>
+                    <td>
+                        <div>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Ruby</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Php</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">2 + more</a>
+                        </div>
+                    </td>
+                    <td>
+                        121
+                    </td>
+                    <td>
+                        <ul class="list-inline font-size-20 contact-links mb-0">
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Message"><i class="bx bx-message-square-dots"></i></a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Profile"><i class="bx bx-user-circle"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <img class="rounded-circle avatar-xs" src="assets/images/users/avatar-4.jpg" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">Minnie Walter</a></h5>
+                        <p class="text-muted mb-0">Frontend Developer</p>
+                    </td>
+                    <td>minnie@skote.com</td>
+                    <td>
+                        <div>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Html</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Css</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">2 + more</a>
+                        </div>
+                    </td>
+                    <td>
+                        145
+                    </td>
+                    <td>
+                        <ul class="list-inline font-size-20 contact-links mb-0">
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Message"><i class="bx bx-message-square-dots"></i></a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Profile"><i class="bx bx-user-circle"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <img class="rounded-circle avatar-xs" src="assets/images/users/avatar-5.jpg" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">Shirley Smith</a></h5>
+                        <p class="text-muted mb-0">UI/UX Designer</p>
+                    </td>
+                    <td>shirley@skote.com</td>
+                    <td>
+                        <div>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Photoshop</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">illustrator</a>
+                        </div>
+                    </td>
+                    <td>
+                        136
+                    </td>
+                    <td>
+                        <ul class="list-inline font-size-20 contact-links mb-0">
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Message"><i class="bx bx-message-square-dots"></i></a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Profile"><i class="bx bx-user-circle"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="avatar-xs">
+                            <span class="avatar-title rounded-circle">
+                                J
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">John Santiago</a></h5>
+                        <p class="text-muted mb-0">Full Stack Developer</p>
+                    </td>
+                    <td>john@skote.com</td>
+                    <td>
+                        <div>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Ruby</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Php</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">2 + more</a>
+                        </div>
+                    </td>
+                    <td>
+                        125
+                    </td>
+                    <td>
+                        <ul class="list-inline font-size-20 contact-links mb-0">
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Message"><i class="bx bx-message-square-dots"></i></a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Profile"><i class="bx bx-user-circle"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div>
+                            <img class="rounded-circle avatar-xs" src="assets/images/users/avatar-5.jpg" alt="">
+                        </div>
+                    </td>
+                    <td>
+                        <h5 class="font-size-14 mb-1"><a href="javascript: void(0);" class="text-dark">Colin Melton</a></h5>
+                        <p class="text-muted mb-0">Backend Developer</p>
+                    </td>
+                    <td>colin@skote.com</td>
+                    <td>
+                        <div>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Php</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Java</a>
+                            <a href="javascript: void(0);" class="badge badge-soft-primary font-size-11 m-1">Python</a>
+                        </div>
+                    </td>
+                    <td>
+                        136
+                    </td>
+                    <td>
+                        <ul class="list-inline font-size-20 contact-links mb-0">
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Message"><i class="bx bx-message-square-dots"></i></a>
+                            </li>
+                            <li class="list-inline-item px-2">
+                                <a href="javascript: void(0);" title="Profile"><i class="bx bx-user-circle"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="pagination pagination-rounded justify-content-center mt-4">
+                <li class="page-item disabled">
+                    <a href="javascript: void(0);" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
                 </li>
-                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                    <a href="#" class="btn btn-sm btn-soft-info"><i class="mdi mdi-pencil-outline"></i></a>
+                <li class="page-item">
+                    <a href="javascript: void(0);" class="page-link">1</a>
                 </li>
-                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                    <button wire:click="delete({{ $department->id }})" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger"><i class="mdi mdi-delete-outline"></i></a>
+                <li class="page-item active">
+                    <a href="javascript: void(0);" class="page-link">2</a>
+                </li>
+                <li class="page-item">
+                    <a href="javascript: void(0);" class="page-link">3</a>
+                </li>
+                <li class="page-item">
+                    <a href="javascript: void(0);" class="page-link">4</a>
+                </li>
+                <li class="page-item">
+                    <a href="javascript: void(0);" class="page-link">5</a>
+                </li>
+                <li class="page-item">
+                    <a href="javascript: void(0);" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
                 </li>
             </ul>
-        </td>
-    </tr>
-    @empty
-    <tr>
-        No records found
-    </tr>
-    @endforelse
-    <<<<<<< HEAD </tbody>
-        =======
-</tbody>
->>>>>>> origin/viewEmployees-ui
+        </div>
+    </div>
+</div>

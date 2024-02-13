@@ -12,7 +12,7 @@
             <span key="t-multi-level">Departments</span>
         </a>
         <ul class="sub-menu" aria-expanded="true">
-            <li><a href="/departments" key="t-level-1-1">Department Manager</a></li>
+            <li><a href="/departments_manager" key="t-level-1-1">Department Manager</a></li>
             <li>
                 <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Department List</a>
                 <ul class="sub-menu" aria-expanded="true">
@@ -24,7 +24,7 @@
         </ul>
     </li>
     <li>
-        <a href="/employee">
+        <a href="/employees">
             <i class="bx bxs-user-detail"></i>
             <span key="t-contacts">Employee</span>
         </a>

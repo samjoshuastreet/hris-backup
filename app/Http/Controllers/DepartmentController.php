@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
-    public function index(Department $department)
+    public function index()
     {
         $departments = Department::orderBy('id')->get();
         return view('departments.index', compact('departments'));

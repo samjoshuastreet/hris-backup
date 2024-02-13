@@ -45,11 +45,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                <h4 class="mb-sm-0 font-size-18">Department Manager</h4>
+                                <h4 class="mb-sm-0 font-size-18">Departments Manager</h4>
 
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Department Manager</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Departments Manager</a></li>
                                         <li class="breadcrumb-item active">HRIS</li>
                                     </ol>
                                 </div>
@@ -65,7 +65,7 @@
                             <div class="card">
                                 <div class="card-body border-bottom">
                                     <div class="d-flex align-items-center">
-                                        <h5 class="mb-0 card-title flex-grow-1">Jobs Lists</h5>
+                                        <h5 class="mb-0 card-title flex-grow-1">Departments Manager</h5>
                                         <div class="flex-shrink-0">
                                             <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-md">Add New Department</button>
                                             <a href="#!" class="btn btn-light"><i class="mdi mdi-refresh"></i></a>

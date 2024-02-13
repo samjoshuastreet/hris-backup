@@ -20,7 +20,15 @@
             {{ $department->number_of_employees }}
 
         </td>
-        <td>{{ $department->status }}</td>
+        <td>
+            @if($department->status == 'Active')
+            <span class="badge badge-soft-success">{{ $department->status }}</span>
+            @elseif($department->status == 'Inactive')
+            <span class="badge badge-soft-danger">{{ $department->status }}</span>
+            @else
+            <span class="badge badge-soft-warning">{{ $department->status }}</span>
+            @endif
+        </td>
         <td>
             <ul class="list-unstyled hstack gap-1 mb-0">
                 <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
