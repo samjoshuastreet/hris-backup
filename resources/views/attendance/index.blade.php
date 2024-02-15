@@ -6,7 +6,7 @@
 <link href="{{ asset('assets/libs/dropzone/dropzone.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @include('layouts.components.head')
-
+{{-- <link href="{{ asset('assets/css/analog-clock.css') }}" rel="stylesheet" type="text/css" /> --}}
 <body data-sidebar="dark">
 
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
@@ -65,32 +65,30 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Attendance</h4>
+                            <h4 class="card-title mb-4">Check In/Out</h4>
                             <div class="row">
-                                <div class="col-sm-4" style="text-align: center;">
+                                <div class="col-sm-4  mb-sm-2" style="text-align: center;">
                                     <p class="text-muted">Last Check In</p>
                                     <h3>9:08 am</h3>
-                                    <p class="text-muted"><span class="text-success me-2"> 12% <i class="mdi mdi-arrow-up"></i> </span> Wednesday, February 14,2024 </p>
+                                    <p class="text-muted"> Wednesday, February 14,2024 </p>
                                     <div class="mt-4">
                                         <a href="javascript: void(0);" class="btn btn-primary waves-effect waves-light btn-sm">Check In <i class="bx bx-time"></i></a>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="mt-4 mt-sm-0">
-                                        <div id="radialBar-chart" data-colors='["--bs-primary"]' class="apex-charts"></div>
-                                    </div>
+                                <div class="col-sm-4  mb-sm-2">
+                                    @include('layouts.components.clock')
                                 </div>
                                 {{-- clock --}}
-                                <div class="col-sm-4" style="text-align: center;">
+                                <div class="col-sm-4  mb-sm-2" style="text-align: center;">
                                     <p class="text-muted">Last Check Out</p>
                                     <h3>5:08 pm</h3>
-                                    <p class="text-muted"><span class="text-success me-2"> 12% <i class="mdi mdi-arrow-up"></i> </span> Wednesday, February 14,2024 </p>
+                                    <p class="text-muted">Wednesday, February 14,2024 </p>
                                     <div class="mt-4">
                                         <a href="javascript: void(0);" class="btn btn-primary waves-effect waves-light btn-sm disabled">Check out <i class="va vaadin-time-backward"></i></a>
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-muted mb-0">We craft digital, graphic and dimensional thinking.</p>
+                            <p class="text-muted mb-0">"Time is the most valuable thing a man can spend." - Theophrastus</p>
                         </div>
                     </div>
 
@@ -226,6 +224,7 @@
     @endsection
     @include('layouts.components.script')
     @livewireScripts
+    {{-- <script src="{{ asset('assets/js/analog-clock.js') }}"></script> --}}
 </body>
 
 </html>
