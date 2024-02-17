@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,7 +11,7 @@ class DepartmentController extends Controller
 {
     public function index()
     {
-        $departments = Department::orderBy('id')->get();
+        $departments = Department::all();
         return view('departments.index', compact('departments'));
     }
 
@@ -54,8 +55,9 @@ class DepartmentController extends Controller
 
     public function view_department($id)
     {
+        $departments = Department::all();
         $department = Department::find($id);
-        return view('departments.department_viewer', compact('department'));
+        return view('departments.department_viewer', compact('department', 'departments'));
     }
 
     public function store(Request $request)

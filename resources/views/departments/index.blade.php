@@ -415,6 +415,18 @@
             });
         }
 
+        function render_sidebar() {
+            $.ajax({
+                url: '{{ route("render_sidebar") }}',
+                data: '',
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#sidebar-menu').html(data);
+                }
+            });
+        }
+
         $(document).ready(function() {
             $(document).find('#sucMsgCont').hide();
             $('#delete_scs_cont').hide();
@@ -439,6 +451,7 @@
                             clear_validations();
                             printSuccessMsg(data.msg);
                             render_list();
+                            render_sidebar();
                         } else if (data.success == false) {
 
                         } else {
@@ -509,6 +522,7 @@
                                     icon: "success"
                                 });
                                 render_list();
+                                render_sidebar();
                             } else if (data.success == false) {
                                 Swal.fire({
                                     title: "Deletion Failed!",
@@ -556,6 +570,7 @@
                             document.getElementById('DepartmentFormUpdate').reset();
                             clear_validations();
                             render_list();
+                            render_sidebar();
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Updated!',

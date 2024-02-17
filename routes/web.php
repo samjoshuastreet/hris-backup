@@ -17,6 +17,8 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/sidebar/reload', [HomeController::class, 'render_sidebar'])->name('render_sidebar');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/logout_user', [LoginController::class, 'logout_user'])->name('logout_user');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');

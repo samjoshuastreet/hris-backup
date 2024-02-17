@@ -7,6 +7,7 @@
 @endsection
 @include('layouts.components.head')
 {{-- <link href="{{ asset('assets/css/analog-clock.css') }}" rel="stylesheet" type="text/css" /> --}}
+
 <body data-sidebar="dark">
 
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
@@ -27,7 +28,7 @@
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
-                    <livewire:Sidebar />
+                    @include('layouts.components.sidebar')
                 </div>
                 <!-- Sidebar -->
             </div>
@@ -131,7 +132,7 @@
                                 <div class="col-lg-12">
                                     <div class="card">
 
-                                        <livewire:CheckInOutForm/>
+                                        <livewire:CheckInOutForm />
 
                                         <!-- end card body -->
                                     </div>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,6 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $departments = Department::all();
+        return view('home', compact('departments'));
+    }
+
+    public function render_sidebar()
+    {
+        $departments = Department::all();
+        return view('layouts.components.sidebar', compact('departments'))->render();
     }
 }
