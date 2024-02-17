@@ -19,4 +19,15 @@ class Department extends Model
         'number_of_employees',
         'status'
     ];
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
+    public function get_employees()
+    {
+        $employeeIds = Employee::pluck('id')->toArray();
+        return $employeeIds;
+    }
 }

@@ -3,7 +3,38 @@
     <li>
         <a href="/home">
             <i class="bx bx-home-circle"></i>
-            <span key="t-dashboards">Dashboards</span>
+            <span key="t-dashboards">Dashboard</span>
+        </a>
+    </li>
+    <li>
+        <a href="/employee">
+            <i class="bx bxs-user-detail"></i>
+            <span key="t-contacts">Employees</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="bx bx-timer"></i>
+            <span key="t-contacts">Attendance</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="bx bx-user-plus"></i>
+            <span key="t-contacts">Recruiting</span>
+        </a>
+    </li>
+    <li>
+        <a href="#">
+            <i class="bx bx-money"></i>
+            <span key="t-contacts">Payroll</span>
+        </a>
+    </li>
+    <li class="menu-title" key="t-menu">Organization</li>
+    <li>
+        <a href="#">
+            <i class="bx bx-money"></i>
+            <span key="t-contacts">Company</span>
         </a>
     </li>
     <li>
@@ -24,9 +55,9 @@
         </ul>
     </li>
     <li>
-        <a href="/employees">
-            <i class="bx bxs-user-detail"></i>
-            <span key="t-contacts">Employee</span>
+        <a href="#">
+            <i class="bx bxs-book"></i>
+            <span key="t-contacts">Policies</span>
         </a>
     </li>
 </ul>

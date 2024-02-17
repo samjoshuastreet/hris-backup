@@ -32,9 +32,19 @@ Route::post('/department/store', [DepartmentController::class, 'store'])->name('
 Route::post('/department/update/{id}', [DepartmentController::class, 'update'])->name('update');
 Route::post('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
 Route::post('/department/delete/{id}', [DepartmentController::class, 'delete'])->name('delete');
+// Department Ajax
+Route::get('/department/create', [DepartmentController::class, 'create'])->name('create');
+Route::get('/department/reload', [DepartmentController::class, 'render_list'])->name('render_list');
+Route::get('/department/update', [DepartmentController::class, 'update'])->name('update');
+Route::get('/department/delete_record/{id}', [DepartmentController::class, 'delete_record'])->name('delete_record');
+Route::get('/department/get_record/{id}', [DepartmentController::class, 'get_record'])->name('get_record');
 
 // Route::post('/department/store', [DepartmentController::class, 'store'])->name('department.store');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/employees', [EmployeeController::class, 'index']);
+Route::get('/employee', [EmployeeController::class, 'index'])->name('index');
+Route::get('/employee/reload', [EmployeeController::class, 'render_employee_list'])->name('render_employee_list');
+Route::get('/firstValidation/employee', [EmployeeController::class, 'firstValidation'])->name('firstValidation');
+Route::get('/thirdValidation/employee', [EmployeeController::class, 'thirdValidation'])->name('thirdValidation');
+Route::get('/fourthValidation/employee', [EmployeeController::class, 'fourthValidation'])->name('fourthValidation');

@@ -27,7 +27,7 @@
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
-                    <livewire:Sidebar />
+                    @include('layouts.components.sidebar')
                 </div>
                 <!-- Sidebar -->
             </div>
@@ -62,75 +62,23 @@
                     </div>
                     <!-- end page title -->
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <livewire:EmployeeList />
-                            </div>
-                        </div>
+                    <div id="employee_list">
+                        @include('employee.ajax.employee_list')
                     </div>
 
-
-                </div> <!-- container-fluid -->
-            </div><!-- End Page-content -->
-
-            <!-- Modal -->
-            <div class="modal fade" id="jobDelete" tabindex="-1" aria-labelledby="jobDeleteLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-body px-4 py-5 text-center">
-                            <button type="button" id="close_button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
-                            <div class="avatar-sm mb-4 mx-auto">
-                                <div class="avatar-title bg-primary text-primary bg-opacity-10 font-size-20 rounded-3">
-                                    <i class="mdi mdi-trash-can-outline"></i>
-                                </div>
-                            </div>
-                            <p class="text-muted font-size-16 mb-4">Are you sure you want to permanently erase the job.</p>
-
-                            <div class="hstack gap-2 justify-content-center mb-0">
-                                <button type="button" class="btn btn-danger">Delete Now</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </div>
-
-            <!-- sample modal content -->
-            <div id="exampleModalFullscreen" class="modal fade" tabindex="-1" aria-labelledby="#exampleModalFullscreenLabel" aria-hidden="true">
-                <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalFullscreenLabel">Add an Employee</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="card">
-
-                                        <livewire:EmployeeForm />
-
-                                        <!-- end card body -->
-                                    </div>
-                                    <!-- end card -->
-                                </div>
-                                <!-- end col -->
-                            </div>
-                            <!-- end row -->
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
 
 
-            @include('layouts.components.footer')
+            </div> <!-- container-fluid -->
+        </div><!-- End Page-content -->
+
+        <div id="EmployeeForm">
+            @include('employee.forms.personal_information')
         </div>
-        <!-- end main content-->
+
+        @include('layouts.components.footer')
+    </div>
+    <!-- end main content-->
 
     </div>
     <!-- END layout-wrapper -->
@@ -199,6 +147,122 @@
     <script src="{{ asset('assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
     <script src="{{ asset('assets/libs/dropzone/dropzone-min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/form-file-upload.init.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+
+            function printValidationErrorMsg(msg) {
+                clear_validations();
+                $.each(msg, function(field_name, error) {
+                    $(document).find('#' + field_name + '_error').text(error);
+                });
+            }
+
+            function clear_validations() {
+                $(document).find('.field_errors').text('');
+            }
+
+            function render_employee_list() {
+                $.ajax({
+                    url: '{{ route("render_employee_list") }}',
+                    data: '',
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        $('#employee_list').html(data);
+                    }
+                });
+            }
+
+            $('#firstValidation').submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $.ajax({
+                    url: '{{ route("firstValidation") }}',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if (data.success == true) {
+                            $('#firstmodal').modal('toggle');
+                            $('#secondmodal').modal('toggle');
+                            clear_validations();
+                        } else {
+                            console.log(data);
+                            printValidationErrorMsg(data.msg);
+                        }
+                    }
+                });
+                return false;
+            });
+
+            $('#secondValidation').submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $('#secondmodal').modal('toggle');
+                $('#thirdmodal').modal('toggle');
+                return false;
+            });
+
+            $('#thirdValidation').submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $.ajax({
+                    url: '{{ route("thirdValidation") }}',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if (data.success == true) {
+                            $('#thirdmodal').modal('toggle');
+                            $('#fourthmodal').modal('toggle');
+                            $('#first_name_review').val($('#firstValidation #first_name').val());
+                            $('#middle_name_review').val($('#firstValidation #middle_name').val());
+                            $('#last_name_review').val($('#firstValidation #last_name').val());
+                            $('#gender_review').val($('#firstValidation #gender').val());
+                            $('#email_address_review').val($('#firstValidation #email_address').val());
+                            $('#date_of_birth_review').val($('#firstValidation #date_of_birth').val());
+                            $('#permanent_address_review').val($('#firstValidation #permanent_address').val());
+                            $('#current_address_review').val($('#firstValidation #current_address').val());
+                            $('#contact_number_review').val($('#firstValidation #contact_number').val());
+                            $('#status_review').val($('#firstValidation #employee_status').val());
+                            $('#department_review').val($('#firstValidation #department').val());
+                            $('#name_review').val($('#thirdValidation #name').val());
+                            $('#password_review').val($('#thirdValidation #password').val());
+                            clear_validations();
+                        } else {
+                            console.log(data);
+                            printValidationErrorMsg(data.msg);
+                        }
+                    }
+                });
+                return false;
+            });
+
+            $('#fourthValidation').submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $.ajax({
+                    url: '{{ route("fourthValidation") }}',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        if (data.success == true) {
+                            $('#firstValidation')[0].reset();
+                            $('#secondValidation')[0].reset();
+                            $('#thirdValidation')[0].reset();
+                            $('#fourthValidation')[0].reset();
+                            clear_validations();
+                            render_employee_list();
+                        } else {
+                            printValidationErrorMsg(data.msg);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
     @endsection
     @include('layouts.components.script')
     @livewireScripts

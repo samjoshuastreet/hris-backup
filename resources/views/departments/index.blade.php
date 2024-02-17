@@ -24,7 +24,7 @@
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
-                    <livewire:Sidebar />
+                    @include('layouts.components.sidebar')
                 </div>
                 <!-- Sidebar -->
             </div>
@@ -82,25 +82,10 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <span class="alert alert-success" id="alert-success" style="display: none;"></span>
-                                    <span class="alert alert-danger" id="alert-success" style="display: none;"></span>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered align-middle nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">ID</th>
-                                                    <th scope="col">Department</th>
-                                                    <th scope="col">Description</th>
-                                                    <th scope="col">Location</th>
-                                                    <th scope="col">Contact Number</th>
-                                                    <th scope="col">Email Address</th>
-                                                    <th scope="col">Total Employees</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <livewire:DepartmentList />
-                                        </table>
+                                    <div id="department_list">
+
+                                        @include('departments.ajax.department_list')
+
                                     </div>
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col-auto me-auto">
@@ -139,15 +124,177 @@
                                     <div id="create_modal" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myMediumModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-md">
 
-                                            <livewire:DepartmentForm />
+                                            <form action="" id="departmentForm">
+                                                @csrf
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myMediumModalLabel">Add New Department</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <p class="card-title-desc">Fill in details below.</p>
+
+                                                        <div class="mb-3 row">
+                                                            <label for="department_name" class="col-md-4 col-form-label">Name</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" type="text" placeholder="Add a name" id="department_name" name="department_name">
+                                                                <small id="department_name_error" class="field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="description" class="col-md-4 col-form-label">Description</label>
+                                                            <div class="col-md-8">
+                                                                <textarea id="description" class="form-control" maxlength="225" rows="3" placeholder="Add a description" name="description"></textarea>
+                                                                <small id="description_error" class="field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3 row">
+                                                            <label for="location" class="col-md-4 col-form-label">Location</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" type="text" placeholder="Add a location" id="location" name="location">
+
+                                                                <small id="location_error" class="field_errors form-text text-warning"></small>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="contact_number" class="col-md-4 col-form-label">Contact Number</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" type="text" placeholder="Add a contact number" id="contact_number" name="contact_number">
+
+                                                                <small id="contact_number_error" class="field_errors form-text text-warning"></small>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="email_address" class="col-md-4 col-form-label">Email Address</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" type="email" placeholder="Add an email address" id="email_address" name="email_address">
+
+                                                                <small id="email_address_error" class="field_errors form-text text-warning"></small>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label for="number_of_employees" class="col-md-4 col-form-label">Number of Employees</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" type="number" step="none" placeholder="Number of employees" id="number_of_employees" name="number_of_employees">
+
+                                                                <small id="number_of_employees_error" class="field_errors form-text text-warning"></small>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 row">
+                                                            <label for="department_status" class="form-label col-form-label col-md-4">Status</label>
+                                                            <div class="col-md-8">
+                                                                <select id="department_status" class="form-control select2 status" name="department_status">
+                                                                    <option>Select</option>
+                                                                    <option value="Active">Active</option>
+                                                                    <option value="Inactive">Inactive</option>
+                                                                    <option value="Pending Restructuring">Pending Restructuring</option>
+                                                                    <option value="Pending Budget Approval">Pending Budget Approval</option>
+                                                                    <option value="On Hold">On Hold</option>
+                                                                </select>
+
+                                                                <small id="department_status_error" class="field_errors form-text text-warning"></small>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <button type="submit" class="btn btn-primary waves-effect btn-label waves-light addBtn">
+                                                                <i class="bx bx-smile label-icon"></i>
+                                                                Create
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </form>
 
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
 
-                                    <div id="create_modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myMediumModalLabel" aria-hidden="true">
+                                    <div id="update_modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myMediumModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
 
-                                            <livewire:DepartmentFormUpdate />
+                                            <form id="DepartmentFormUpdate" action="">
+                                                @csrf
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myMediumModalLabel">Update Department</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="card-title-desc">Fill in details below.</p>
+                                                        <input type="text" id="id" name="id" hidden>
+
+                                                        <div class="mb-3 row">
+                                                            <label for="department_name" class="col-md-4 col-form-label">Name</label>
+                                                            <div class="col-md-8">
+                                                                <input wire:model="department_name" class="form-control" type="text" placeholder="Add a name" id="department_name" name="department_name">
+                                                                <small id="department_name_update_error" class="update_field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="description" class="col-md-4 col-form-label">Description</label>
+                                                            <div class="col-md-8">
+                                                                <textarea wire:model="description" id="description" class="form-control" maxlength="225" rows="3" placeholder="Add a description" name="description"></textarea>
+                                                                <small id="description_update_error" class="update_field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mb-3 row">
+                                                            <label for="location" class="col-md-4 col-form-label">Location</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" wire:model="location" type="text" placeholder="Add a location" id="location" name="location">
+                                                                <small id="location_update_error" class="update_field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="contact_number" class="col-md-4 col-form-label">Contact Number</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" wire:model="contact_number" type="text" placeholder="Add a contact number" id="contact_number" name="contact_number">
+                                                                <small id="contact_number_update_error" class="update_field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row">
+                                                            <label for="email_address" class="col-md-4 col-form-label">Email Address</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" wire:model="email_address" type="email" placeholder="Add an email address" id="email_address" name="email_address">
+                                                                <small id="email_address_update_error" class="update_field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <label for="number_of_employees" class="col-md-4 col-form-label">Number of Employees</label>
+                                                            <div class="col-md-8">
+                                                                <input class="form-control" wire:model="number_of_employees" type="number" step="none" placeholder="Number of employees" id="number_of_employees" name="number_of_employees">
+                                                                <small id="number_of_employees_update_error" class="update_field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-4 row mt-3">
+                                                            <label for="department_status" class="form-label col-form-label col-md-4">Status</label>
+                                                            <div class="col-md-8">
+                                                                <select id="department_status" class="form-control select2 status" name="department_status">
+                                                                    <option>Select</option>
+                                                                    <option value="Active">Active</option>
+                                                                    <option value="Inactive">Inactive</option>
+                                                                    <option value="Pending Restructuring">Pending Restructuring</option>
+                                                                    <option value="Pending Budget Approval">Pending Budget Approval</option>
+                                                                    <option value="On Hold">On Hold</option>
+                                                                </select>
+                                                                <small id="department_status_update_error" class="update_field_errors form-text text-warning"></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <button type="submit" class="btn btn-primary waves-effect btn-label waves-light addBtn">
+                                                                <i class="bx bx-smile label-icon"></i>
+                                                                Update
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </form>
 
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
@@ -250,6 +397,191 @@
 
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
+
+    @section('moreScripts')
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function render_list() {
+            $.ajax({
+                url: '{{ route("render_list") }}',
+                data: '',
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#department_list').html(data);
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $(document).find('#sucMsgCont').hide();
+            $('#delete_scs_cont').hide();
+            $('#delete_fail_cont').hide();
+            $('#departmentForm').submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $.ajax({
+                    url: '{{ route("create") }}',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.addBtn').prop('disable', true);
+                    },
+                    complete: function() {
+                        $('.addBtn').prop('disable', false);
+                    },
+                    success: function(data) {
+                        if (data.success == true) {
+                            document.getElementById('departmentForm').reset();
+                            clear_validations();
+                            printSuccessMsg(data.msg);
+                            render_list();
+                        } else if (data.success == false) {
+
+                        } else {
+                            printValidationErrorMsg(data.msg);
+                        }
+                    }
+                });
+                return false;
+
+                function printSuccessMsg(msg) {
+                    Swal.fire({
+                        title: "New Department Created!",
+                        text: "Do you want to create another one?",
+                        showDenyButton: true,
+                        showCancelButton: false,
+                        confirmButtonText: "Add New",
+                        denyButtonText: `Exit`,
+                        icon: 'success'
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            // Nothing
+                        } else if (result.isDenied) {
+                            $('#create_modal').modal('toggle');
+                        }
+                    });
+                }
+
+                function printValidationErrorMsg(msg) {
+                    clear_validations();
+                    $.each(msg, function(field_name, error) {
+                        $(document).find('#' + field_name + '_error').text(error);
+                    });
+                }
+            });
+
+            function clear_validations() {
+                $(document).find('.field_errors').text('');
+            }
+        });
+
+        $(document).on('click', '.department_delete', function() {
+            var target_id = $(this).attr('data-id');
+            var url = "{{ route('delete_record', 'target_id') }}";
+            url = url.replace('target_id', target_id);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: url,
+                        type: 'get',
+                        contentType: false,
+                        processData: false,
+                        success: function(data) {
+                            if (data.success == true) {
+                                $('#delete_scs_cont').show();
+                                $('#delete_scs').text(data.delete_scs);
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success"
+                                });
+                                render_list();
+                            } else if (data.success == false) {
+                                Swal.fire({
+                                    title: "Deletion Failed!",
+                                    text: data.delete_fail,
+                                    icon: "error"
+                                });
+                                $('#delete_fail_cont').show();
+                                $('#delete_fail').text(data.delete_fail);
+                            }
+                        }
+                    });
+                }
+            });
+
+        });
+
+        $(document).on('click', '.department_update', function() {
+            $('#DepartmentFormUpdate #id').val($(this).attr('data-id'));
+            $('#DepartmentFormUpdate #department_name').val($(this).attr('data-department_name'));
+            $('#DepartmentFormUpdate #description').val($(this).attr('data-description'));
+            $('#DepartmentFormUpdate #location').val($(this).attr('data-location'));
+            $('#DepartmentFormUpdate #contact_number').val($(this).attr('data-contact_number'));
+            $('#DepartmentFormUpdate #email_address').val($(this).attr('data-email_address'));
+            $('#DepartmentFormUpdate #number_of_employees').val($(this).attr('data-number_of_employees'));
+            $('#DepartmentFormUpdate #department_status').val($(this).attr('data-department_status'));
+        });
+
+        $(document).ready(function() {
+            $('#DepartmentFormUpdate').submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                $.ajax({
+                    url: '{{ route("update") }}',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('.addBtn').prop('disable', true);
+                    },
+                    complete: function() {
+                        $('.addBtn').prop('disable', false);
+                    },
+                    success: function(data) {
+                        if (data.success == true) {
+                            document.getElementById('DepartmentFormUpdate').reset();
+                            clear_validations();
+                            render_list();
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Updated!',
+                                text: 'Your data has been updated.',
+                                confirmButtonText: 'OK'
+                            });
+                        } else if (data.success == false) {} else {
+                            printValidationErrorMsg(data.msg);
+                        }
+                    }
+                });
+            });
+
+            function printValidationErrorMsg(msg) {
+                clear_validations();
+                $.each(msg, function(field_name, error) {
+                    $(document).find('#' + field_name + '_update_error').text(error[0]);
+                });
+            }
+
+            function clear_validations() {
+                $(document).find('.update_field_errors').text('');
+            }
+        });
+    </script>
+    @endsection
     @include('layouts.components.script')
     @livewireScripts
 </body>
