@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -48,3 +49,6 @@ Route::get('/employee/reload', [EmployeeController::class, 'render_employee_list
 Route::get('/firstValidation/employee', [EmployeeController::class, 'firstValidation'])->name('firstValidation');
 Route::get('/thirdValidation/employee', [EmployeeController::class, 'thirdValidation'])->name('thirdValidation');
 Route::get('/fourthValidation/employee', [EmployeeController::class, 'fourthValidation'])->name('fourthValidation');
+Route::get('/employees', [EmployeeController::class, 'index']);
+
+Route::get('/attendance', [AttendanceController::class, 'index']);
