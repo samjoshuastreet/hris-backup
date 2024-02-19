@@ -9,4 +9,5 @@
     <div class="hour h3">3</div>
     <div class="hour h6">6</div>
     <div class="hour h9">9</div>
+    <div class="hour time">00:00:--</div>
 </div>

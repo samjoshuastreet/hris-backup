@@ -68,7 +68,7 @@
                         <div class="card-body">
                             <h4 class="card-title mb-4">Check In/Out</h4>
                             <div class="row">
-                                <div class="col-sm-4  mb-sm-2" style="text-align: center;">
+                                <div class="col-sm-4 mb-3 mb-sm-2" style="text-align: center;">
                                     <p class="text-muted">Last Check In</p>
                                     <h3>9:08 am</h3>
                                     <p class="text-muted"> Wednesday, February 14,2024 </p>
@@ -76,11 +76,11 @@
                                         <button class="btn btn-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target="#checkinoutform">Check In <i class="bx bx-time"></i></button>
                                     </div>
                                 </div>
-                                <div class="col-sm-4  mb-sm-2">
+                                <div class="col-sm-4 mb-3 mb-sm-2">
                                     @include('layouts.components.clock')
                                 </div>
                                 {{-- clock --}}
-                                <div class="col-sm-4  mb-sm-2" style="text-align: center;">
+                                <div class="col-sm-4 mb-3 mb-sm-2" style="text-align: center;">
                                     <p class="text-muted">Last Check Out</p>
                                     <h3>5:08 pm</h3>
                                     <p class="text-muted">Wednesday, February 14,2024 </p>
@@ -98,26 +98,36 @@
             </div><!-- End Page-content -->
 
             <!-- Modal -->
-            <div class="modal fade" id="jobDelete" tabindex="-1" aria-labelledby="jobDeleteLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-body px-4 py-5 text-center">
-                            <button type="button" id="close_button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
-                            <div class="avatar-sm mb-4 mx-auto">
-                                <div class="avatar-title bg-primary text-primary bg-opacity-10 font-size-20 rounded-3">
-                                    <i class="mdi mdi-trash-can-outline"></i>
-                                </div>
-                            </div>
-                            <p class="text-muted font-size-16 mb-4">Are you sure you want to permanently erase the job.</p>
+            {{-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
-                            <div class="hstack gap-2 justify-content-center mb-0">
-                                <button type="button" class="btn btn-danger">Delete Now</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div> --}}
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Check In</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <div>
+                                <h1>19</h2>
+                                <h4>FEB</h4>
+                            </div>
+                            <div>
+                                <h2>9:08 AM</h2>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Confirm</button>
+                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
 
             <!-- sample modal content -->
             <div id="checkinoutform" class="modal fade" tabindex="-1" aria-labelledby="#exampleModalFullscreenLabel" aria-hidden="true">
@@ -226,6 +236,10 @@
     @include('layouts.components.script')
     @livewireScripts
     {{-- <script src="{{ asset('assets/js/analog-clock.js') }}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
