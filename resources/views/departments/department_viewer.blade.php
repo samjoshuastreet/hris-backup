@@ -66,7 +66,13 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Number of Active Employees</th>
-                                                <td>{{ $department->number_of_employees }}</td>
+                                                <td>
+                                                    @if($department->number_of_employees == 0)
+                                                    0
+                                                    @else
+                                                    {{ $department->number_of_employees }}
+                                                    @endif
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Contact Number</th>

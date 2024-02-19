@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Events\EmployeeAdded;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -91,6 +92,7 @@ class EmployeeController extends Controller
 
         $employee->user_id = $target->id;
         $employee->save();
+        event(new EmployeeAdded($employee));
         return response()->json(['success' => true]);
     }
 

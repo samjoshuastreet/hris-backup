@@ -23,7 +23,7 @@ class DepartmentController extends Controller
             'location' => 'nullable',
             'contact_number' => 'required|max:9999999999999|numeric',
             'email_address' => 'required|email|unique:departments',
-            'number_of_employees' => 'nullable',
+            'number_of_employees' => 'numeric|nullable',
             'department_status' => 'required|in:Active,Inactive,Pending Restructuring,Pending Budget Approval,On Hold'
         ]);
 
