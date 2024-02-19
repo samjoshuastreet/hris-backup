@@ -73,7 +73,7 @@
                                     <h3>9:08 am</h3>
                                     <p class="text-muted"> Wednesday, February 14,2024 </p>
                                     <div class="mt-4">
-                                        <a href="javascript: void(0);" class="btn btn-primary waves-effect waves-light btn-sm">Check In <i class="bx bx-time"></i></a>
+                                        <button class="btn btn-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target="#checkinoutform">Check In <i class="bx bx-time"></i></button>
                                     </div>
                                 </div>
                                 <div class="col-sm-4  mb-sm-2">
@@ -120,8 +120,8 @@
             </div>
 
             <!-- sample modal content -->
-            <div id="exampleModalFullscreen" class="modal fade" tabindex="-1" aria-labelledby="#exampleModalFullscreenLabel" aria-hidden="true">
-                <div class="modal-dialog modal-fullscreen">
+            <div id="checkinoutform" class="modal fade" tabindex="-1" aria-labelledby="#exampleModalFullscreenLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalFullscreenLabel">Add an Employee</h5>
@@ -132,7 +132,7 @@
                                 <div class="col-lg-12">
                                     <div class="card">
 
-                                        <livewire:CheckInOutForm />
+                                        @include('attendance.forms.checkInOutForm')
 
                                         <!-- end card body -->
                                     </div>
