@@ -38,10 +38,14 @@
     right: 84px;
 }
 
+.time {
+    bottom: -120px;
+}
+
 .analog-clock .hand {
     --rotation: 0;
     position: absolute;
-    background-color: white;
+    background-color: hsl(0, 0%, 100%, 0.8);
     width: 6px;
     height: 36%;
     bottom: 50%;
