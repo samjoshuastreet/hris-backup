@@ -13,7 +13,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="/attendance">
             <i class="bx bx-timer"></i>
             <span key="t-contacts">Attendance</span>
         </a>

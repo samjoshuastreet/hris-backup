@@ -18,8 +18,8 @@
                         {{ $employee->employee_photo}}
 
                         <div class="flex-grow-1 overflow-hidden">
-                            <h5 class="text-truncate font-size-15"><a href="javascript: void(0);" class="text-dark">{{ $employee->first_name }}</a></h5>
-                            <h5 class="text-truncate font-size-15"><a href="javascript: void(0);" class="text-dark">{{ $employee->last_name }}</a></h5>
+                            <h5 class="text-truncate font-size-15"><a href="{{ route('view', ['id' => $employee->id]) }}" class="text-dark">{{ $employee->first_name }}</a></h5>
+                            <h5 class="text-truncate font-size-15"><a href="{{ route('view', ['id' => $employee->id]) }}" class="text-dark">{{ $employee->last_name }}</a></h5>
                             <br>
                             <p class="h6 text-nowrap">
                                 <i class="bx bx-phone-call me-1"></i>

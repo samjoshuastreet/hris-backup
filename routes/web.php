@@ -17,6 +17,8 @@ Auth::routes();
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::get('/sidebar/reload', [HomeController::class, 'render_sidebar'])->name('render_sidebar');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/logout_user', [LoginController::class, 'logout_user'])->name('logout_user');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -45,10 +47,14 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/employee', [EmployeeController::class, 'index'])->name('index');
+Route::get('/employees/{id}', [EmployeeController::class, 'view'])->name('view');
 Route::get('/employee/reload', [EmployeeController::class, 'render_employee_list'])->name('render_employee_list');
 Route::get('/firstValidation/employee', [EmployeeController::class, 'firstValidation'])->name('firstValidation');
 Route::get('/thirdValidation/employee', [EmployeeController::class, 'thirdValidation'])->name('thirdValidation');
 Route::get('/fourthValidation/employee', [EmployeeController::class, 'fourthValidation'])->name('fourthValidation');
+
+Route::post('/employee/image_upload', [EmployeeController::class, 'image_upload'])->name('image_upload');
+
 Route::get('/employees', [EmployeeController::class, 'index']);
 
 Route::get('/attendance', [AttendanceController::class, 'index']);

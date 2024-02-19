@@ -180,7 +180,7 @@
                                                         <div class="row">
                                                             <label for="number_of_employees" class="col-md-4 col-form-label">Number of Employees</label>
                                                             <div class="col-md-8">
-                                                                <input class="form-control" type="number" step="none" placeholder="Number of employees" id="number_of_employees" name="number_of_employees">
+                                                                <input class="form-control" type="number" step="none" id="number_of_employees" name="number_of_employees" value=0 disabled>
 
                                                                 <small id="number_of_employees_error" class="field_errors form-text text-warning"></small>
 
@@ -308,29 +308,6 @@
                 </div> <!-- container-fluid -->
             </div><!-- End Page-content -->
 
-            <!-- Modal -->
-            <div class="modal fade" id="jobDelete" tabindex="-1" aria-labelledby="jobDeleteLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-body px-4 py-5 text-center">
-                            <button type="button" id="close_button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
-                            <div class="avatar-sm mb-4 mx-auto">
-                                <div class="avatar-title bg-primary text-primary bg-opacity-10 font-size-20 rounded-3">
-                                    <i class="mdi mdi-trash-can-outline"></i>
-                                </div>
-                            </div>
-                            <p class="text-muted font-size-16 mb-4">Are you sure you want to permanently erase the job.</p>
-
-                            <div class="hstack gap-2 justify-content-center mb-0">
-                                <button type="button" class="btn btn-danger">Delete Now</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
             @include('layouts.components.footer')
         </div>
         <!-- end main content-->
@@ -415,6 +392,18 @@
             });
         }
 
+        function render_sidebar() {
+            $.ajax({
+                url: '{{ route("render_sidebar") }}',
+                data: '',
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#sidebar-menu').html(data);
+                }
+            });
+        }
+
         $(document).ready(function() {
             $(document).find('#sucMsgCont').hide();
             $('#delete_scs_cont').hide();
@@ -439,6 +428,7 @@
                             clear_validations();
                             printSuccessMsg(data.msg);
                             render_list();
+                            render_sidebar();
                         } else if (data.success == false) {
 
                         } else {
@@ -509,6 +499,7 @@
                                     icon: "success"
                                 });
                                 render_list();
+                                render_sidebar();
                             } else if (data.success == false) {
                                 Swal.fire({
                                     title: "Deletion Failed!",
@@ -556,6 +547,7 @@
                             document.getElementById('DepartmentFormUpdate').reset();
                             clear_validations();
                             render_list();
+                            render_sidebar();
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Updated!',

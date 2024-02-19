@@ -15,7 +15,7 @@
                 <!--- Sidemenu -->
                 <div id="sidebar-menu">
                     <!-- Left Menu Start -->
-                    <livewire:Sidebar />
+                    @include('layouts.components.sidebar')
                 </div>
                 <!-- Sidebar -->
             </div>

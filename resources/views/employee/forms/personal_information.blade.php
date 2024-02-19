@@ -120,6 +120,18 @@
                                 </div>
                             </div>
 
+                            <div class="mb-3 row">
+                                <label for="employee_photo" class="form-label col-form-label col-md-4">Employee Photo</label>
+                                <div class="col-md-8">
+                                    <input class="form-control" type="file" id="employee_photo" name="employee_photo">
+
+                                </div>
+                            </div>
+                            <div id="employee_photo_preview" class="text-center d-flex flex-column justify-content-center align-items-center gap-2">
+                                <div id="show-crop-image"></div>
+                                <!-- <div><button wire:click="removeImg()" type="button" class="btn btn-danger btn-sm waves-effect waves-light">Remove</button></div> -->
+                            </div>
+
                         </div>
                     </div><!-- /.modal-content -->
                 </div>

@@ -32,8 +32,11 @@
                     {{ $department->email_address }}
                 </td>
                 <td>
+                    @if($department->number_of_employees == 0)
+                    0
+                    @else
                     {{ $department->number_of_employees }}
-
+                    @endif
                 </td>
                 <td>
                     @if($department->status == 'Active')

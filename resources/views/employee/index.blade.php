@@ -3,7 +3,9 @@
 
 @section('title', 'HRIS - Departments')
 @section('moreLinks')
-<link href="{{ asset('assets/libs/dropzone/dropzone.css') }}" rel="stylesheet" type="text/css" />
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" integrity="sha512-zxBiDORGDEAYDdKLuYU9X/JaJo/DPzE42UubfBw9yg8Qvb2YRRIQ8v4KsGHOx2H1/+sdSXyXxLXv5r7tHc9ygg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js" integrity="sha512-vUJTqeDCu0MKkOhuI83/MEX5HSNPW+Lw46BA775bAWIp1Zwgz3qggia/t2EnSGB9GoS2Ln6npDmbJTdNhHy1Yw==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 @endsection
 @include('layouts.components.head')
 
@@ -140,13 +142,29 @@
     </div>
     <!-- /Right-bar -->
 
+    <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#upload-cont">Open First Modal</button>
+
+    <!-- First modal dialog -->
+    <div class="modal fade" id="upload-cont" aria-hidden="true" aria-labelledby="..." tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Crop Photo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="upload-demo">
+                </div>
+                <div class="modal-footer">
+                    <!-- Toogle to second dialog -->
+                    <button class="btn btn-primary image-upload" aria-label="close" data-bs-toggle="modal" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
     @section('moreScripts')
-    <script src="{{ asset('assets/js/pages/form-wizard.init.js') }}"></script>
-    <script src="{{ asset('assets/libs/jquery-steps/build/jquery.steps.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/dropzone/dropzone-min.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/form-file-upload.init.js') }}"></script>
     <script>
         $(document).ready(function() {
 
@@ -254,6 +272,11 @@
                             $('#fourthValidation')[0].reset();
                             clear_validations();
                             render_employee_list();
+                            Swal.fire({
+                                title: "Success!",
+                                text: "New Employee Created!",
+                                icon: 'success'
+                            })
                         } else {
                             printValidationErrorMsg(data.msg);
                         }

@@ -11,12 +11,12 @@
             </span>
             </a> --}}
 
-            <a href="" class="logo logo-light">
+            <a href="/home" class="logo logo-light">
                 <span class="logo-sm">
-                    <img src="{{ asset('assets/images/logo-circ-min.png') }}" alt="" height="22">
+                    <img src="{{ asset('assets/images/logo-circ-min.png') }}" alt="" height="25" width="25">
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo-circ-min.png') }}" alt="" height="50" width="50">
+                    <img src="{{ asset('assets/images/pixzel_main.png') }}" alt="" height="50" width="150">
                 </span>
             </a>
         </div>

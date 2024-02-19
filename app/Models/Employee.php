@@ -20,7 +20,8 @@ class Employee extends Model
         'current_address',
         'contact_number',
         'status',
-        'department_id'
+        'department_id',
+        'employee_photo'
     ];
     public function department()
     {

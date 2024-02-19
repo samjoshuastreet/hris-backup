@@ -83,8 +83,39 @@ class EmployeeController extends Controller
         $employee->contact_number = $request->input('contact_number');
         $employee->status = $request->input('status');
         $employee->department_id = $request->input('department');
+
+        if ($request->has('employee_photo')) {
+            $employee_photo = $request->file('employee_photo')->store('employees', 'public');
+            $employee->employee_photo = $employee_photo;
+        }
+
         $employee->user_id = $target->id;
         $employee->save();
         return response()->json(['success' => true]);
+    }
+
+    public function image_upload(Request $request)
+    {
+        $image = $request->image;
+
+        list($type, $image) = explode(';', $image);
+        list(, $image) = explode(',', $image);
+
+        $image = base64_decode($image);
+
+        $image_name = time() . '.png';
+
+        $path = public_path('employees/photos/' . $image_name);
+
+        file_put_contents($path, $image);
+
+        return response()->json(['status' => true]);
+    }
+
+    public function view($id)
+    {
+        $departments = Department::all();
+        $target = Employee::find($id);
+        return view('employee.profile', compact('target', 'departments'));
     }
 }
