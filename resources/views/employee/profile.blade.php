@@ -3,7 +3,6 @@
 
 @section('title', 'HRIS - ' . $target->last_name)
 @include('layouts.components.head')
-
 <body data-sidebar="dark">
     <div id="layout-wrapper">
         <header id="page-topbar">
@@ -26,7 +25,6 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-
             <div class="page-content">
                 <!-- start page title -->
                 <div class="row">
@@ -47,13 +45,25 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xl-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="fw-semibold">{{ $target->first_name }}</h5>
-                            </div>
+                    <div class="col-xl-3">
+                        {{-- profile card --}}
+                        @include('layouts.components.profile.profile-card')
+                    </div>
+
+                <div class="col-xl-6">
+                        {{-- profile role card --}}
+                    <div class="card">
+                        <div class="card-body">
+                                <h4>Role</h4>
+                                <h3 style="text-align: center">{{ $target->first_name}}</h3>
+                                <h6 class="text-center"><span class="badge badge-pill badge-soft-success font-size-11 mb-2">Active</span></h6>
+                                <div class="info"></div>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-xl-3">
+                    @include('layouts.components.profile.profile-activiy')
                 </div>
                 <!-- end page title -->
             </div>
