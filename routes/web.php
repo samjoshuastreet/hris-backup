@@ -51,10 +51,15 @@ Route::get('/employees/{id}', [EmployeeController::class, 'view'])->name('view')
 Route::get('/employee/reload', [EmployeeController::class, 'render_employee_list'])->name('render_employee_list');
 Route::get('/firstValidation/employee', [EmployeeController::class, 'firstValidation'])->name('firstValidation');
 Route::get('/thirdValidation/employee', [EmployeeController::class, 'thirdValidation'])->name('thirdValidation');
-Route::get('/fourthValidation/employee', [EmployeeController::class, 'fourthValidation'])->name('fourthValidation');
+Route::post('/fourthValidation/employee', [EmployeeController::class, 'fourthValidation'])->name('fourthValidation');
 
 Route::post('/employee/image_upload', [EmployeeController::class, 'image_upload'])->name('image_upload');
 
 Route::get('/employees', [EmployeeController::class, 'index']);
 
 Route::get('/attendance', [AttendanceController::class, 'index']);
+Route::get('/attendance/load_time', [AttendanceController::class, 'load_time'])->name('load_time');
+Route::get('/attendance/reload_a', [AttendanceController::class, 'reload_a'])->name('reload_a');
+Route::get('/attendance/reload_b', [AttendanceController::class, 'reload_b'])->name('reload_b');
+Route::get('/attendance/check_in', [AttendanceController::class, 'check_in'])->name('check_in');
+Route::get('/attendance/check_out', [AttendanceController::class, 'check_out'])->name('check_out');

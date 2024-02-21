@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Employee;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Events\EmployeeAdded;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
@@ -63,53 +64,52 @@ class EmployeeController extends Controller
 
     public function fourthValidation(Request $request)
     {
-        $user = new User();
-        $user->name = $request->input('name');
-        $user->password = $request->input('password');
-        $user->email = $request->input('email_address');
-        $user->save();
+        try {
+            $user = new User();
+            $user->name = $request->input('name');
+            $user->password = $request->input('password');
+            $user->email = $request->input('email_address');
+            $user->save();
 
-        $target = User::where('email', $request->input('email_address'))->first();
+            $target = User::where('email', $request->input('email_address'))->first();
 
-        $employee = new Employee();
-        $employee->first_name = $request->input('first_name');
-        $employee->middle_name = $request->input('middle_name');
-        $employee->last_name = $request->input('last_name');
-        $employee->gender = $request->input('gender');
-        $employee->email_address = $request->input('email_address');
-        $employee->date_of_birth = $request->input('date_of_birth');
-        $employee->permanent_address = $request->input('permanent_address');
-        $employee->current_address = $request->input('current_address');
-        $employee->contact_number = $request->input('contact_number');
-        $employee->status = $request->input('status');
-        $employee->department_id = $request->input('department');
+            $employee = new Employee();
+            $employee->first_name = $request->input('first_name');
+            $employee->middle_name = $request->input('middle_name');
+            $employee->last_name = $request->input('last_name');
+            $employee->gender = $request->input('gender');
+            $employee->email_address = $request->input('email_address');
+            $employee->date_of_birth = $request->input('date_of_birth');
+            $employee->permanent_address = $request->input('permanent_address');
+            $employee->current_address = $request->input('current_address');
+            $employee->contact_number = $request->input('contact_number');
+            $employee->status = $request->input('status');
+            $employee->department_id = $request->input('department');
 
-        if ($request->has('employee_photo')) {
-            $employee_photo = $request->file('employee_photo')->store('employees', 'public');
-            $employee->employee_photo = $employee_photo;
+            if ($request->hasFile('employee_photo_two')) {
+                $employee_photo = $request->file('employee_photo_two')->store('employees', 'public');
+                $employee->employee_photo = $employee_photo;
+            }
+
+            $employee->user_id = $target->id;
+
+            $employee->save();
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'msg' => $e->getMessage()]);
         }
-
-        $employee->user_id = $target->id;
-        $employee->save();
-        return response()->json(['success' => true]);
     }
 
     public function image_upload(Request $request)
     {
-        $image = $request->image;
-
-        list($type, $image) = explode(';', $image);
-        list(, $image) = explode(',', $image);
-
-        $image = base64_decode($image);
-
-        $image_name = time() . '.png';
-
-        $path = public_path('employees/photos/' . $image_name);
-
-        file_put_contents($path, $image);
-
-        return response()->json(['status' => true]);
+        $data = $_POST['image'];
+        $image_array_1 = explode(";", $data);
+        $image_array_2 = explode(",", $image_array_1[1]);
+        $data = base64_decode($image_array_2[1]);
+        $image_name = 'upload/' . time() . '.png';
+        file_put_contents($image_name, $data);
+        echo $image_name;
+        return response()->json(['success' => true]);
     }
 
     public function view($id)

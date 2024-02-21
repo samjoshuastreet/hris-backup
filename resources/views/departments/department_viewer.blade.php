@@ -66,7 +66,13 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Number of Active Employees</th>
-                                                <td>{{ $department->number_of_employees }}</td>
+                                                <td>
+                                                    @if($department->number_of_employees == 0)
+                                                    0
+                                                    @else
+                                                    {{ $department->number_of_employees }}
+                                                    @endif
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Contact Number</th>
@@ -99,23 +105,46 @@
                         </div>
                     </div><!--end col-->
                     <div class="col-xl-7">
-                        <div class="card">
-                            <div class="card-body border-bottom">
-                                <div class="d-flex">
-                                    <img src="assets/images/companies/wechat.svg" alt="" height="50">
-                                    <div class="flex-grow-1 ms-3">
-                                        <h5 class="fw-semibold">{{ $department->department_name }} Department</h5>
-                                        <ul class="list-unstyled hstack gap-2 mb-0">
-                                            <li>
-                                                <i class="bx bx-building-house"></i> <span class="text-muted">{{ $department->location }}</span>
-                                            </li>
-                                        </ul>
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-body border-bottom">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <h5 class="fw-semibold">{{ $department->department_name }} Department</h5>
+                                            <ul class="list-unstyled hstack gap-2 mb-0">
+                                                <li>
+                                                    <i class="bx bx-building-house"></i> <span class="text-muted">{{ $department->location }}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="card-body">
+                                    <h5 class="fw-semibold mb-3">Description</h5>
+                                    <p class="text-muted">{{ $department->description }}</p>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="fw-semibold mb-3">Description</h5>
-                                <p class="text-muted">{{ $department->description }}</p>
+                        </div>
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-body border-bottom">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <h5 class="fw-semibold">Employees</h5>
+                                            <div class="d-flex justify-content-start gap-2">
+                                                @forelse($employees as $employee)
+                                                @if($employee->employee_photo == "")
+                                                <img src="{{ asset('assets/images/default.png') }}" alt="" height="30" width="30" style="object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                                                @else
+                                                <img src="{{ asset('storage/' . $employee->employee_photo) }}" alt="" height="30" width="30" style="object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                                                @endif
+                                                @empty
+                                                <h6 class="text-muted">There is no employee in this department</h6>
+                                                @endforelse
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div><!--end col-->

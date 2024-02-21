@@ -180,7 +180,7 @@
                                                         <div class="row">
                                                             <label for="number_of_employees" class="col-md-4 col-form-label">Number of Employees</label>
                                                             <div class="col-md-8">
-                                                                <input class="form-control" type="number" step="none" id="number_of_employees" name="number_of_employees" value=0 disabled>
+                                                                <input class="form-control" type="number" step="1" id="number_of_employees" name="number_of_employees" value="0" disabled>
 
                                                                 <small id="number_of_employees_error" class="field_errors form-text text-warning"></small>
 
@@ -536,12 +536,6 @@
                     data: formData,
                     contentType: false,
                     processData: false,
-                    beforeSend: function() {
-                        $('.addBtn').prop('disable', true);
-                    },
-                    complete: function() {
-                        $('.addBtn').prop('disable', false);
-                    },
                     success: function(data) {
                         if (data.success == true) {
                             document.getElementById('DepartmentFormUpdate').reset();
