@@ -5,51 +5,50 @@
     <div class="row">
         @foreach($employees as $key => $employee)
         <div class="col-xl-4 col-sm-6">
-            <div class="card">
+            <div class="card" id="employee-card">
                 <div class="card-body">
-                    <div class="d-flex">
-                        <div class="flex-shrink-0 me-4">
-                            <div class="avatar-md">
-                                @if($employee->employee_photo == "")
-                                <span class="avatar-title rounded-circle bg-light text-danger font-size-16">
-                                    <img src="{{ asset('assets/images/default.png') }}" alt="" height="100%" style="object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
-                                </span>
-                                @else
-                                <span class="avatar-title rounded-circle bg-light text-danger font-size-16">
-                                    <img src="{{ asset('storage/' . $employee->employee_photo) }}" alt="" height="100%" style="object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
-                                </span>
-                                @endif
-                            </div>
+                    <div class="d-flex align-start mb-3">
+                        <div class="flex-grow-1">
+                            <span class="badge badge-soft-success">Active</span>
                         </div>
+                        <button type="button" class="btn btn-light btn-sm like-btn" data-bs-toggle="button"><i class="bx bx-heart"></i></button>
+                    </div>
+                    <div class="text-center mb-3">
+                        @if($employee->employee_photo == "")
+                        <img src="{{ asset('assets/images/default.png')}}" alt="" class="avatar-sm rounded-circle" />
+                        @else
+                        <img src="{{ asset('storage/' . $employee->employee_photo) }}" alt="" class="avatar-sm rounded-circle" />
+                        @endif
+                        <h6 class="font-size-15 mt-3 mb-1">{{ $employee->first_name }} {{ $employee->last_name }}</h6>
+                        <p class="mb-0 text-muted">UI/UX Designecr</p>
+                    </div>
 
-                        <div class="flex-grow-1 overflow-hidden">
-                            <h5 class="text-truncate font-size-15"><a href="{{ route('view', ['id' => $employee->id]) }}" class="text-dark">{{ $employee->first_name }}</a></h5>
-                            <h5 class="text-truncate font-size-15"><a href="{{ route('view', ['id' => $employee->id]) }}" class="text-dark">{{ $employee->last_name }}</a></h5>
-                            <br>
-                            <p class="h6 text-nowrap">
-                                <i class="bx bx-phone-call me-1"></i>
-                                <span class="text-muted">{{ $employee->contact_number }}</span>
-                            </p>
-                            <p class="h6 text-nowrap">
-                                <i class="bx bx-mail-send me-1"></i>
-                                <span class="text-muted">{{ $employee->email_address }}</span>
-                            </p>
-                            <p class="h6 text-nowrap">
-                                <i class="bx bx-buildings me-1"></i>
-                                <span class="text-muted">{{ $employee->department_id }}</span>
-                            </p>
+
+                    <div class="d-flex mb-3 justify-content-between gap-2 text-muted">
+                        <div>
+                            <h6><span <i class="bx bx-buildings me-1"></i></span>Department</h6>
+                            <h4>{{ $employee->department_id }}</h4>
+                        </div>
+                        <div>
+                            <h6><span class="bx bxs-id-card me-1"></span>ID No.</h6>
+                            <h4>{{ $employee->id }}</h4>
                         </div>
                     </div>
-                </div>
-                <div class="px-4 py-3 border-top">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item me-3">
-                            <span class="badge bg-success">Completed</span>
-                        </li>
-                        <li class="list-inline-item me-3">
-                            <i class="bx bx-hash"></i>{{ $employee->id }}</p>
-                        </li>
-                    </ul>
+                    <div class="hstack gap-2">
+                        <p class="h6 text-nowrap">
+                            <i class="bx bx-mail-send me-1"></i>
+                            <span class="text-muted">{{ $employee->email_address }}</span>
+                        </p>
+                    </div>
+                    <div class="hstack gap-2r">
+                        <p class="h6 text-nowrap">
+                            <i class="bx bx-phone-call me-1"></i>
+                            <span class="text-muted">{{ $employee->contact_number }}</span>
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-1">
+                        <a href="{{route('view', ['id' => $employee->id])}}" class="btn btn-soft-primary d-block">View Profile</a>
+                    </div>
                 </div>
             </div>
         </div>
