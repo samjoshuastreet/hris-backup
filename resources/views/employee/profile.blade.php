@@ -64,6 +64,7 @@
                     {{-- attendance card --}}
                     <div class="card">
                         <div class="card-body">
+                            <h5 class="mb-4">{{ $target->first_name}}'s calendar</h5>
                             <div id="lnb">
 
                                 <div id="right">
@@ -112,16 +113,6 @@
                                                             <i class="calendar-icon ic_view_month"></i>Month
                                                         </a>
                                                     </li>
-                                                    <li role="presentation">
-                                                        <a class="dropdown-item" role="menuitem" data-action="toggle-weeks2">
-                                                            <i class="calendar-icon ic_view_week"></i>2 weeks
-                                                        </a>
-                                                    </li>
-                                                    <li role="presentation">
-                                                        <a class="dropdown-item" role="menuitem" data-action="toggle-weeks3">
-                                                            <i class="calendar-icon ic_view_week"></i>3 weeks
-                                                        </a>
-                                                    </li>
                                                     <li role="presentation" class="dropdown-divider"></li>
                                                     <li role="presentation">
                                                         <a class="dropdown-item" role="menuitem" data-action="toggle-workweek">
@@ -151,11 +142,12 @@
                                     </div>
                                 </div>
 
+                                   <div class="lnb-calendars-item"><label><input type="checkbox" class="tui-full-calendar-checkbox-round" value="1" checked=""><span style="border-color: #556ee6; background-color: #556ee6;"></span><span>My Calendar</span></label></div>
+                                    <div class="lnb-calendars-item"><label><input type="checkbox" class="tui-full-calendar-checkbox-round" value="3" checked=""><span style="border-color: #f46a6a; background-color: #f46a6a;"></span><span>Company</span></label></div>
+
                                 <div class="lnb-new-schedule float-sm-end ms-sm-3 mt-4 mt-sm-0">
-                                    <button id="btn-new-schedule" type="button" class="btn btn-primary lnb-new-schedule-btn" data-toggle="modal">
-                                        New schedule</button>
                                 </div>
-                                <div id="calendarList" class="lnb-calendars-d1 mt-4 mt-sm-0 me-sm-0 mb-4"></div>
+                                <!-- <div id="calendarList" class="lnb-calendars-d1 mt-4 mt-sm-0 me-sm-0 mb-4"></div> -->
 
                                 <div id="calendar" style="height: 800px;"></div>
 
