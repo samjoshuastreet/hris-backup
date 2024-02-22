@@ -23,7 +23,6 @@ class DepartmentController extends Controller
             'location' => 'nullable',
             'contact_number' => 'required|max:9999999999999|numeric',
             'email_address' => 'required|email|unique:departments',
-            'number_of_employees' => 'nullable',
             'department_status' => 'required|in:Active,Inactive,Pending Restructuring,Pending Budget Approval,On Hold'
         ]);
 
@@ -37,7 +36,7 @@ class DepartmentController extends Controller
                     'location' => $request->input('location'),
                     'contact_number' => $request->input('contact_number'),
                     'email_address' => $request->input('email_address'),
-                    'number_of_employees' => $request->input('number_of_employees'),
+                    'number_of_employees' => 0,
                     'status' => $request->input('department_status'),
                 ]);
                 return response()->json(['success' => true, 'msg' => 'Department created successfully!']);
@@ -57,7 +56,8 @@ class DepartmentController extends Controller
     {
         $departments = Department::all();
         $department = Department::find($id);
-        return view('departments.department_viewer', compact('department', 'departments'));
+        $employees = $department->employees;
+        return view('departments.department_viewer', compact('department', 'departments', 'employees'));
     }
 
     public function store(Request $request)

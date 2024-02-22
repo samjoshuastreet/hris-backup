@@ -10,12 +10,17 @@
                     <div class="d-flex">
                         <div class="flex-shrink-0 me-4">
                             <div class="avatar-md">
+                                @if($employee->employee_photo == "")
                                 <span class="avatar-title rounded-circle bg-light text-danger font-size-16">
-                                    <img src="{{ url('storage/' . $employee->employee_photo) }}" alt="" height="30">
+                                    <img src="{{ asset('assets/images/default.png') }}" alt="" height="100%" style="object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
                                 </span>
+                                @else
+                                <span class="avatar-title rounded-circle bg-light text-danger font-size-16">
+                                    <img src="{{ asset('storage/' . $employee->employee_photo) }}" alt="" height="100%" style="object-fit: cover; border-radius: 50%; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+                                </span>
+                                @endif
                             </div>
                         </div>
-                        {{ $employee->employee_photo}}
 
                         <div class="flex-grow-1 overflow-hidden">
                             <h5 class="text-truncate font-size-15"><a href="{{ route('view', ['id' => $employee->id]) }}" class="text-dark">{{ $employee->first_name }}</a></h5>

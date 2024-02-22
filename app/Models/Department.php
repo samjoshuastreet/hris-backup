@@ -9,6 +9,8 @@ class Department extends Model
 {
     use HasFactory;
 
+    protected $table = 'departments';
+
     protected $fillable = [
         'id',
         'department_name',
@@ -23,6 +25,11 @@ class Department extends Model
     public function employees()
     {
         return $this->hasMany(Employee::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
     }
 
     public function get_employees()

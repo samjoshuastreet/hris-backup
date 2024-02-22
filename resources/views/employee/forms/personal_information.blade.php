@@ -1,5 +1,5 @@
 <!-- First modal dialog -->
-<form id="firstValidation" action="">
+<form id="firstValidation" action="" enctype="multipart/form-data">
     <div class="modal fade" id="firstmodal" aria-hidden="true" aria-labelledby="..." tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -128,8 +128,8 @@
                                 </div>
                             </div>
                             <div id="employee_photo_preview" class="text-center d-flex flex-column justify-content-center align-items-center gap-2">
-                                <div id="show-crop-image"></div>
-                                <!-- <div><button wire:click="removeImg()" type="button" class="btn btn-danger btn-sm waves-effect waves-light">Remove</button></div> -->
+                                <img class="my-3" src="" alt="Upload a Photo" width="200" height="200" id="profile-img" style="border-radius: 50%; border: 2px solid gray;">
+                                <button type="button" id="removeImg-btn" class="btn btn-danger btn-sm waves-effect waves-light">Remove</button>
                             </div>
 
                         </div>
@@ -196,7 +196,7 @@
                 </div>
                 <div class="modal-footer">
                     <!-- Toogle to first dialog, `data-bs-dismiss` attribute can be omitted - clicking on link will close dialog anyway -->
-                    <button class="btn btn-primary" data-bs-target="#firstmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Prev</button>
+                    <button class="btn btn-primary" type="button" data-bs-target="#firstmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Prev</button>
                     <button class="btn btn-primary" type="submit">Next</button>
                 </div>
             </div>
@@ -204,7 +204,7 @@
     </div>
 </form>
 <!-- Third modal dialog -->
-<form id="thirdValidation" action="">
+<form id="thirdValidation" action="" enctype="multipart/form-data">
     <div class="modal fade" id="thirdmodal" aria-hidden="true" aria-labelledby="..." tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -236,7 +236,7 @@
                 </div>
                 <div class="modal-footer">
                     <!-- Toogle to first dialog, `data-bs-dismiss` attribute can be omitted - clicking on link will close dialog anyway -->
-                    <button class="btn btn-primary" data-bs-target="#secondmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Prev</button>
+                    <button class="btn btn-primary" type="button" data-bs-target="#secondmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Prev</button>
                     <button class="btn btn-primary" type="submit">Next</button>
                 </div>
             </div>
@@ -244,7 +244,7 @@
     </div>
 </form>
 <!-- Fourth modal dialog -->
-<form id="fourthValidation" action="">
+<form id="fourthValidation" action="" enctype="multipart/form-data">
     @csrf
     <div class="modal fade" id="fourthmodal" aria-hidden="true" aria-labelledby="..." tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -315,6 +315,10 @@
                                     </tr>
                                     <tr>
                                         <td style="vertical-align: middle;">Employee Photo</td>
+                                        <td class="d-flex justify-content-center align-items-center flex-column">
+                                            <img src="" alt="Upload a Photo" width="100" height="100" id="profile-img-two" style="border-radius: 50%; border: 2px solid gray;">
+                                            <input class="form-control" type="file" id="employee_photo_two" name="employee_photo_two" hidden>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th colspan="2" class="text-lg text-center">Account Information</th>
@@ -336,7 +340,7 @@
                 </div>
                 <div class="modal-footer">
                     <!-- Toogle to first dialog, `data-bs-dismiss` attribute can be omitted - clicking on link will close dialog anyway -->
-                    <button class="btn btn-primary" data-bs-target="#thirdmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Prev</button>
+                    <button class="btn btn-primary" type="button" data-bs-target="#thirdmodal" data-bs-toggle="modal" data-bs-dismiss="modal">Prev</button>
                     <button class="btn btn-success" type="submit" data-bs-dismiss="modal">Submit</button>
                 </div>
             </div>

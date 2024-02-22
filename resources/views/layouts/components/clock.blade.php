@@ -1,5 +1,3 @@
-<link href="{{ asset('assets/css/analog-clock.css') }}" rel="stylesheet" type="text/css" />
-<script defer src="{{ asset('assets/js/analog-clock.js') }}"></script>
 <div class="analog-clock">
     <div class="hand hour"></div>
     <div class="hand minute"></div>
