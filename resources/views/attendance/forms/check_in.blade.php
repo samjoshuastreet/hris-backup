@@ -13,6 +13,12 @@
 <div id="time-cont">
 </div>
 
+<div class="my-2 d-flex flex-column gap-0 justify-content-center align-items-center">
+    <h6 class="text-muted h6">Smile for the camera!</h6>
+    <div class="border border-secondary" id="myCameraIn">
+    </div>
+</div>
+
 <div class="mb-3 row px-4">
     <label for="remarks" class="col-md-12 col-form-label">Remarks</label>
     <div class="col-md-12">

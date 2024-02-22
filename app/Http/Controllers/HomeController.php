@@ -27,7 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $departments = Department::all();
-        return view('home', compact('departments'));
+        $user = auth()->user();
+        $employee = Employee::where('user_id', $user->id)->first();
+        return view('home', compact('departments', 'employee'));
     }
 
     public function render_sidebar()

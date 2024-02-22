@@ -15,8 +15,10 @@ class EmployeeController extends Controller
     public function index()
     {
         $departments = Department::all();
+        $user = auth()->user();
+        $employee = Employee::where('user_id', $user->id)->first();
         $employees = Employee::all();
-        return view('employee.index', compact('departments', 'employees'));
+        return view('employee.index', compact('departments', 'employees', 'employee'));
     }
 
     public function render_employee_list(Request $request)
@@ -115,7 +117,9 @@ class EmployeeController extends Controller
     public function view($id)
     {
         $departments = Department::all();
+        $user = auth()->user();
+        $employee = Employee::where('user_id', $user->id)->first();
         $target = Employee::find($id);
-        return view('employee.profile', compact('target', 'departments'));
+        return view('employee.profile', compact('target', 'departments', 'employee'));
     }
 }

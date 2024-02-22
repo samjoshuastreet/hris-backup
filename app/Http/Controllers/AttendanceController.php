@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Attendance;
 use App\Models\Department;
-use GuzzleHttp\Psr7\FnStream;
 use Illuminate\Http\Request;
+use GuzzleHttp\Psr7\FnStream;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class AttendanceController extends Controller
@@ -17,6 +18,7 @@ class AttendanceController extends Controller
         $departments = Department::all();
         $user = auth()->user();
         $employee = Employee::where('user_id', $user->id)->first();
+
         $today = Carbon::now()->format('Y-m-d');
         $record = $employee->attendanceData->where('date', $today)->first();
         $has_checked_in = false;
@@ -64,7 +66,31 @@ class AttendanceController extends Controller
                 $last_check_out_expanded = Carbon::parse($latest_record->time_out)->format('l, F j, Y');
             }
         }
-        return view('attendance.index', compact('departments', 'record', 'latest_record', 'has_checked_in', 'has_checked_out', 'last_check_in', 'last_check_in_expanded', 'last_check_out', 'last_check_out_expanded', 'user', 'check_in', 'check_in_expanded', 'check_out', 'check_out_expanded'));
+        return view('attendance.index', compact('departments', 'record', 'latest_record', 'has_checked_in', 'has_checked_out', 'last_check_in', 'last_check_in_expanded', 'last_check_out', 'last_check_out_expanded', 'user', 'check_in', 'check_in_expanded', 'check_out', 'check_out_expanded', 'employee'));
+    }
+
+    public function save_image(Request $request)
+    {
+        $mode = $request->input('mode');
+        $imageData = $request->input('imageData');
+
+        $user = auth()->user();
+        $employee = Employee::where('user_id', $user->id)->first();
+
+        $today = Carbon::now()->format('Y-m-d');
+        $record = $employee->attendanceData->where('date', $today)->first();
+
+        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imageData));
+
+        $filename = 'captured_image_' . time() . '.jpg';
+
+        Storage::disk('public')->put('Attendance/' . $filename, $imageData);
+
+        if ($mode == 'time_in') {
+            $record->time_in_photo = $filename;
+            $record->save();
+            return response()->json(['success' => false]);
+        }
     }
 
     public function load_time(Request $request)

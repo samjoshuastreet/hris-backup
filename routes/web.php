@@ -63,3 +63,4 @@ Route::get('/attendance/reload_a', [AttendanceController::class, 'reload_a'])->n
 Route::get('/attendance/reload_b', [AttendanceController::class, 'reload_b'])->name('reload_b');
 Route::get('/attendance/check_in', [AttendanceController::class, 'check_in'])->name('check_in');
 Route::get('/attendance/check_out', [AttendanceController::class, 'check_out'])->name('check_out');
+Route::get('/attendance/save_image', [AttendanceController::class, 'save_image'])->name('save_image');

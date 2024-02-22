@@ -20,7 +20,7 @@
     @endif
     <div class="mt-4">
         @if($has_checked_in == true && $has_checked_out == false)
-        <button id="check_out_btn" class="btn btn-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target="#checkoutform">Check out <i class="va vaadin-time-backward"></i></button>
+        <button onclick="configure('time_out')" id="check_out_btn" class="btn btn-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target="#checkoutform">Check out <i class="va vaadin-time-backward"></i></button>
         @else
         <button href="javascript: void(0);" class="btn btn-primary waves-effect waves-light btn-sm disabled">Check out <i class="va vaadin-time-backward"></i></button>
         @endif

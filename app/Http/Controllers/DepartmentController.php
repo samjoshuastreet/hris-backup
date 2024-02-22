@@ -12,7 +12,9 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::all();
-        return view('departments.index', compact('departments'));
+        $user = auth()->user();
+        $employee = Employee::where('user_id', $user->id)->first();
+        return view('departments.index', compact('departments', 'employee'));
     }
 
     public function create(Request $request)
@@ -55,9 +57,11 @@ class DepartmentController extends Controller
     public function view_department($id)
     {
         $departments = Department::all();
+        $user = auth()->user();
+        $employee = Employee::where('user_id', $user->id)->first();
         $department = Department::find($id);
         $employees = $department->employees;
-        return view('departments.department_viewer', compact('department', 'departments', 'employees'));
+        return view('departments.department_viewer', compact('department', 'departments', 'employees', 'employee'));
     }
 
     public function store(Request $request)

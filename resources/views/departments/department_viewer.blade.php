@@ -98,8 +98,8 @@
                                     </table>
                                 </div>
                                 <div class="hstack gap-2">
-                                    <button class="btn btn-soft-primary w-100">Apply Now</button>
-                                    <button class="btn btn-soft-danger w-100">Contact Us</button>
+                                    <button class="btn btn-soft-primary w-100">Email</button>
+                                    <button class="btn btn-soft-danger w-100">Call</button>
                                 </div>
                             </div>
                         </div>

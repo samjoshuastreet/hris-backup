@@ -26,7 +26,7 @@
         @if($has_checked_in == true)
         <button class="btn btn-primary waves-effect waves-light btn-sm disabled">Check In <i class="bx bx-time"></i></button>
         @else
-        <button id="check_out_btn" class="btn btn-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target="#checkinform">Check In <i class="bx bx-time"></i></button>
+        <button onclick="configure('time_in')" id="check_out_btn" class="btn btn-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target="#checkinform">Check In <i class="bx bx-time"></i></button>
         @endif
     </div>
 </div>

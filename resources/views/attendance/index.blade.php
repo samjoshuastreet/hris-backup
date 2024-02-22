@@ -139,7 +139,9 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="card">
-
+                                            @if(isset($record))
+                                            <input type="text" id="record_id" value="{{ $record->id }}" hidden>
+                                            @endif
                                             @include('attendance.forms.check_in')
 
                                             <!-- end card body -->
@@ -260,7 +262,46 @@
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
     @section('moreScripts')
-    <script src="{{ asset('assets/js/analog-clock.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('assets/js/analog-clock.js') }}" defer></script>
+    <script src="{{ asset('assets/webcam/webcam.min.js') }}"></script>
+    <script>
+        function configure(mode) {
+            Webcam.set({
+                width: 200,
+                height: 150,
+                image_format: 'jpeg',
+                jpeg_quality: 90
+            });
+
+            if (mode == "time_in") {
+                Webcam.attach('#myCameraIn');
+            } else {
+                Webcam.attach('#myCameraOut');
+            }
+        }
+
+        function captureAndSave(mode, id) {
+            Webcam.snap(function(data_uri) {
+                saveImage(data_uri, mode, id);
+            });
+        }
+
+        function saveImage(imageData, mode) {
+            $.ajax({
+                url: '{{ route("save_image") }}',
+                data: {
+                    imageData: imageData,
+                    mode: mode
+                },
+                success: function(response) {
+                    console.log('Photo Success!');
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        }
+    </script>
     <script>
         $(document).ready(function() {
             function reload_a() {
@@ -310,8 +351,6 @@
             $('#check_in_form').submit(function(e) {
                 e.preventDefault();
                 let formData = $(this).serialize();
-
-                console.log(formData);
                 $.ajax({
                     url: '{{ route("check_in") }}',
                     data: formData,
@@ -321,6 +360,7 @@
                         $('#checkinform').modal('toggle');
                         reload_a();
                         reload_b();
+                        captureAndSave("time_in");
                     },
                     error: function(error) {
                         console.error("Error:", error);
@@ -331,8 +371,6 @@
             $('#check_out_form').submit(function(e) {
                 e.preventDefault();
                 let formData = $(this).serialize();
-
-                console.log(formData);
                 $.ajax({
                     url: '{{ route("check_out") }}',
                     data: formData,
