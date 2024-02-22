@@ -3,6 +3,7 @@
 
 @section('title', 'HRIS - ' . $target->last_name)
 @include('layouts.components.head')
+
 <body data-sidebar="dark">
     <div id="layout-wrapper">
         <header id="page-topbar">
@@ -46,62 +47,62 @@
                 <div class="row">
                     <div class="col-xl-3">
                         {{-- profile card --}}
-                        @include('layouts.components.profile.profile-card')
+                        @include('employee.profile.profile-card')
                     </div>
 
-                <div class="col-xl-6">
+                    <div class="col-xl-6">
                         {{-- profile role card --}}
-                    <div class="card">
-                        @include('layouts.components.profile.role-card')
+                        <div class="card">
+                            @include('employee.profile.role-card')
+                        </div>
+
+                        {{-- calendar --}}
+                        @include('employee.profile.calendar')
                     </div>
 
-                    {{-- calendar --}}
-                    @include('layouts.components.profile.calendar')
+                    <div class="col-xl-3">
+                        @include('employee.profile.profile-activiy')
+                    </div>
+                    <!-- end page title -->
                 </div>
+                <!-- End Page-content -->
 
-                <div class="col-xl-3">
-                    @include('layouts.components.profile.profile-activiy')
-                </div>
-                <!-- end page title -->
+                <!-- start of footer-->
+                @include('layouts.components.footer')
+                <!-- end of footer-->
             </div>
-            <!-- End Page-content -->
+            <!-- end main content-->
 
-            <!-- start of footer-->
-            @include('layouts.components.footer')
-            <!-- end of footer-->
         </div>
-        <!-- end main content-->
+        <!-- END layout-wrapper -->
 
-    </div>
-    <!-- END layout-wrapper -->
+        <!-- Right Sidebar -->
+        @include('layouts.components.right-sidebar')
+        <!-- /Right-bar -->
 
-    <!-- Right Sidebar -->
-    @include('layouts.components.right-sidebar')
-    <!-- /Right-bar -->
-
-    <!-- Right bar overlay-->
-    <div class="rightbar-overlay"></div>
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
 
 
-    @include('layouts.components.script')
+        @include('layouts.components.script')
 
-    {{-- calendar --}}
-    <script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
-    <script src="{{ asset('assets/libs/tui-dom/tui-dom.min.js') }}"></script>
+        {{-- calendar --}}
+        <script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
+        <script src="{{ asset('assets/libs/tui-dom/tui-dom.min.js') }}"></script>
 
-    <script src="{{ asset('assets/libs/tui-time-picker/tui-time-picker.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/tui-date-picker/tui-date-picker.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/tui-time-picker/tui-time-picker.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/tui-date-picker/tui-date-picker.min.js') }}"></script>
 
-    <script src="{{ asset('assets/libs/moment/min/moment.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/chance/chance.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/moment/min/moment.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/chance/chance.min.js') }}"></script>
 
-    <script src="{{ asset('assets/libs/tui-calendar/tui-calendar.min.js') }}"></script>
+        <script src="{{ asset('assets/libs/tui-calendar/tui-calendar.min.js') }}"></script>
 
-    <script src="{{ asset('assets/js/pages/calendars.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/schedules.js') }}"></script>
-    <script src="{{ asset('assets/js/pages/calendar.init.js') }}"></script>
+        <script src="{{ asset('assets/js/pages/calendars.js') }}"></script>
+        <script src="{{ asset('assets/js/pages/schedules.js') }}"></script>
+        <script src="{{ asset('assets/js/pages/calendar.init.js') }}"></script>
 
-    <!-- App js -->
+        <!-- App js -->
 
 </body>
 
