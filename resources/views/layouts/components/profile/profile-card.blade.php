@@ -5,7 +5,7 @@
             <h4 style="text-align: center;" class="mb-4">Personal Profile</h4>
             <div class="profile-container d-flex justify-content-center">
             <div class="img-container mb-4 ratio ratio-1x1 rounded-circle overflow-hidden">
-                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp" class="rounded img-cover" id="img-profile" alt="...">
+                <img src="{{ asset('storage/' . $target->employee_photo) }}" class="rounded img-cover" id="img-profile" alt="...">
             </div>
             </div>
             <h3 style="text-align: center">{{ $target->first_name}}</h3>
