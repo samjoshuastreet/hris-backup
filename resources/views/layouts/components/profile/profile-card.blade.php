@@ -5,7 +5,11 @@
             <h4 style="text-align: center;" class="mb-4">Personal Profile</h4>
             <div class="profile-container d-flex justify-content-center">
             <div class="img-container mb-4 ratio ratio-1x1 rounded-circle overflow-hidden">
+                @if($target->employee_photo == "")
+                <img src="{{ asset('assets/images/default.png') }}" class="rounded img-cover" id="img-profile" alt="...">
+                @else
                 <img src="{{ asset('storage/' . $target->employee_photo) }}" class="rounded img-cover" id="img-profile" alt="...">
+                @endif
             </div>
             </div>
             <h3 style="text-align: center">{{ $target->first_name}}</h3>
