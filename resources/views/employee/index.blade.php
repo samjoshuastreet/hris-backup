@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="{{ asset('assets/cropperjs/cropper.min.css') }}" />
 @endsection
 @include('layouts.components.head')
-
+<link rel="stylesheet" href="{{asset('assets/css/employee/list-card.css')}}">
 <body data-sidebar="dark">
 
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
