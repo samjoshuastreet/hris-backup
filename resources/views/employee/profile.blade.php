@@ -45,12 +45,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-3">
+                    <div class="col-xl-5">
                         {{-- profile card --}}
                         @include('employee.profile.profile-card')
                     </div>
 
-                    <div class="col-xl-6">
+                    <div class="col-xl-5">
                         {{-- profile role card --}}
                         <div class="card">
                             @include('employee.profile.role-card')
@@ -60,7 +60,7 @@
                         @include('employee.profile.calendar')
                     </div>
 
-                    <div class="col-xl-3">
+                    <div class="col-xl-2">
                         @include('employee.profile.profile-activiy')
                     </div>
                     <!-- end page title -->

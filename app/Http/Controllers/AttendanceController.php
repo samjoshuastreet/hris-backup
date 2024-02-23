@@ -89,7 +89,11 @@ class AttendanceController extends Controller
         if ($mode == 'time_in') {
             $record->time_in_photo = $filename;
             $record->save();
-            return response()->json(['success' => false]);
+            return response()->json(['success' => true]);
+        } elseif ($mode == 'time_out') {
+            $record->time_out_photo = $filename;
+            $record->save();
+            return response()->json(['success' => true]);
         }
     }
 

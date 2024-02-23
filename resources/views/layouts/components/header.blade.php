@@ -360,8 +360,23 @@
 
         <div class="dropdown d-inline-block">
             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img class="rounded-circle header-profile-user" src="{{ asset('storage/' . $employee->employee_photo) }}" alt="Header Avatar">
-                <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ $employee->first_name }}</span>
+                <img class="rounded-circle header-profile-user" src="
+                @if(isset($employee))
+                @if($employee->employee_photo == NULL)
+                {{ asset('assets/images/default.png') }}
+                @else
+                {{ asset('storage/' . $employee->employee_photo) }}
+                @endif
+                @else
+                {{ asset('assets/images/default.png') }}
+                @endif" alt="Header Avatar">
+                <span class="d-none d-xl-inline-block ms-1" key="t-henry">
+                    @if(isset($employee))
+                    {{ $employee->first_name }}
+                    @else
+                    Super Admin
+                    @endif
+                </span>
                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-end">

@@ -284,6 +284,7 @@
             Webcam.snap(function(data_uri) {
                 saveImage(data_uri, mode, id);
             });
+            Webcam.reset();
         }
 
         function saveImage(imageData, mode) {
@@ -380,6 +381,7 @@
                         $('#checkoutform').modal('toggle');
                         reload_a();
                         reload_b();
+                        captureAndSave("time_out");
                     },
                     error: function(error) {
                         console.error("Error:", error);
