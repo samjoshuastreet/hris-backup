@@ -233,8 +233,11 @@
         function captureAndSave(mode, id) {
             Webcam.snap(function(data_uri) {
                 saveImage(data_uri, mode, id);
-            });
-            Webcam.reset();
+            }); <<
+            << << < HEAD
+            Webcam.reset(); ===
+            === = >>>
+            >>> > fc93eb891fa49b26de28fc7c087d8ff54a4ba100
         }
 
         function saveImage(imageData, mode) {
@@ -311,14 +314,17 @@
                         $('#checkinform').modal('toggle');
                         reload_a();
                         reload_b();
-                        captureAndSave("time_in");
+                        captureAndSave("time_in"); <<
+                        << << < HEAD
 
                         Swal.fire({
                             title: 'Success!',
                             text: 'Check-in successful.',
                             icon: 'success',
                             confirmButtonText: 'OK'
-                        });
+                        }); ===
+                        === = >>>
+                        >>> > fc93eb891fa49b26de28fc7c087d8ff54a4ba100
                     },
                     error: function(error) {
                         console.error("Error:", error);
@@ -337,7 +343,8 @@
                     success: function(response) {
                         $('#checkoutform').modal('toggle');
                         reload_a();
-                        reload_b();
+                        reload_b(); <<
+                        << << < HEAD
                         captureAndSave("time_out");
 
                         Swal.fire({
@@ -345,7 +352,9 @@
                             text: 'Check-out successful.',
                             icon: 'success',
                             confirmButtonText: 'OK'
-                        });
+                        }); ===
+                        === = >>>
+                        >>> > fc93eb891fa49b26de28fc7c087d8ff54a4ba100
                     },
                     error: function(error) {
                         console.error("Error:", error);
