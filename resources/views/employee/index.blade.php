@@ -7,6 +7,7 @@
 @endsection
 @include('layouts.components.head')
 <link rel="stylesheet" href="{{asset('assets/css/employee/list-card.css')}}">
+
 <body data-sidebar="dark">
 
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
@@ -60,6 +61,96 @@
                         </div>
                     </div>
                     <!-- end page title -->
+
+                    <div class="card-body mb-4">
+                        <form id="filter" action="javascript:void(0);">
+                            <div class="row g-3">
+                                <!--end col-->
+                                <div class="col-xxl-2 col-lg-6">
+                                    <div class="position-relative">
+                                        <div id="datepicker1">
+                                            <input type="text" class="form-control" placeholder="Search an employee..." data-date-format="dd M, yyyy" data-date-container="#datepicker1" data-provide="datepicker" data-date-autoclose="true">
+                                        </div><!-- input-group -->
+                                    </div>
+                                </div>
+                                <!--end col-->
+
+                                <div class="col-xxl-2 col-lg-6">
+                                    <div class="position-relative h-100 hstack gap-3">
+                                        <button type="submit" class="btn btn-primary h-100 w-100"><i class="bx bx-search-alt align-middle"></i> Find</button>
+                                        <a href="#collapseExample" data-bs-toggle="collapse" class="btn btn-secondary h-100 w-100 collapsed" aria-expanded="false"><i class="bx bx-filter-alt align-middle"></i> Advance</a>
+                                        <button data-bs-toggle="modal" data-bs-target="#firstmodal" class="btn btn-success h-100 w-100"><i class="bx bx-smile label-icon"></i> Add Employee</button>
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="collapse" id="collapseExample" style="">
+                                    <div>
+                                        <div class="row g-3">
+                                            <div class="col-xxl-4 col-lg-6">
+                                                <div>
+                                                    <label for="experience" class="form-label fw-semibold">Filter by Department</label>
+                                                </div>
+                                                @foreach($departments as $department)
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="{{ $department->department_name }}" name="{{ $department->id }}" value="true">
+                                                    <label class="form-check-label" for="{{ $department->department_name }}">{{ $department->department_name }}</label>
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="col-xxl-4 col-lg-6">
+                                                <div>
+                                                    <label for="experience" class="form-label fw-semibold">Filter by Gender</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="male" name="male_sort" value="true">
+                                                    <label class="form-check-label" for="male">Male</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="female" name="female_sort" value="true">
+                                                    <label class="form-check-label" for="female">Female</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="non_binary" name="non_binary_sort" value="non_binary">
+                                                    <label class="form-check-label" for="non_binary">Non-Binary</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-lg-6">
+                                                <div>
+                                                    <label for="experience" class="form-label fw-semibold">Filter by Name</label>
+                                                </div>
+                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" name="name_sort" value="off" id="name_sort_off" autocomplete="off" checked="">
+                                                    <label class="btn btn-outline-secondary" for="name_sort_off">None</label>
+
+                                                    <input type="radio" class="btn-check" name="name_sort" value="first_name_sort" id="first_name_sort" autocomplete="off">
+                                                    <label class="btn btn-outline-secondary" for="first_name_sort">First Name</label>
+
+                                                    <input type="radio" class="btn-check" name="name_sort" value="middle_name_sort" id="middle_name_sort" autocomplete="off">
+                                                    <label class="btn btn-outline-secondary" for="middle_name_sort">Middle Name</label>
+
+                                                    <input type="radio" class="btn-check" name="name_sort" value="last_name_sort" id="last_name_sort" autocomplete="off">
+                                                    <label class="btn btn-outline-secondary" for="last_name_sort">Last Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-lg-6">
+                                                <div>
+                                                    <label for="experience" class="form-label fw-semibold">Order By</label>
+                                                </div>
+                                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                                    <input type="radio" class="btn-check" name="order_by" value="desc" id="desc" autocomplete="off" checked="">
+                                                    <label class="btn btn-outline-secondary" for="desc">Descending</label>
+
+                                                    <input type="radio" class="btn-check" name="order_by" value="asc" id="asc" autocomplete="off">
+                                                    <label class="btn btn-outline-secondary" for="asc">Ascending</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end row-->
+                        </form>
+                    </div>
 
                     <div id="employee_list">
                         @include('employee.ajax.employee_list')
@@ -139,9 +230,7 @@
     </div>
     <!-- /Right-bar -->
 
-    <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#upload-cont">Open First Modal</button>
-
-    <!-- First modal dialog -->
+    <!-- Modals -->
     <div class="modal fade" id="crop-cont" aria-hidden="true" aria-labelledby="..." tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -166,6 +255,22 @@
     <div class="rightbar-overlay"></div>
     @section('moreScripts')
     <script src="{{ asset('assets/cropperjs/cropper.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#filter").submit(function(e) {
+                e.preventDefault();
+                let formData = $(this).serialize();
+                console.log(formData);
+                $.ajax({
+                    url: "{{ route('custom_sort') }}",
+                    data: formData,
+                    success: function(html) {
+                        $('#employee_list').html(html);
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
 

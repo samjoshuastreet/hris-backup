@@ -208,6 +208,7 @@
     @include('layouts.components.right-sidebar')
     <!-- /Right-bar -->
 
+
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
     @section('moreScripts')
@@ -311,6 +312,13 @@
                         reload_a();
                         reload_b();
                         captureAndSave("time_in");
+
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Check-in successful.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
                     },
                     error: function(error) {
                         console.error("Error:", error);
@@ -331,6 +339,13 @@
                         reload_a();
                         reload_b();
                         captureAndSave("time_out");
+
+                        Swal.fire({
+                            title: 'Success!',
+                            text: 'Check-out successful.',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        });
                     },
                     error: function(error) {
                         console.error("Error:", error);

@@ -2,6 +2,9 @@
 <html lang="en">
 
 @section('title', 'HRIS - ' . $target->last_name)
+@section('moreLinks')
+
+@endsection
 @include('layouts.components.head')
 
 <body data-sidebar="dark">
@@ -67,6 +70,11 @@
                 </div>
                 <!-- End Page-content -->
 
+                <!-- Modals -->
+                <div id="activity_modal">
+                    @include('attendance.ajax.activity_modal')
+                </div>
+
                 <!-- start of footer-->
                 @include('layouts.components.footer')
                 <!-- end of footer-->
@@ -83,10 +91,7 @@
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
-
-        @include('layouts.components.script')
-
-        {{-- calendar --}}
+        @section('moreScripts')
         <script src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
         <script src="{{ asset('assets/libs/tui-dom/tui-dom.min.js') }}"></script>
 
@@ -101,6 +106,27 @@
         <script src="{{ asset('assets/js/pages/calendars.js') }}"></script>
         <script src="{{ asset('assets/js/pages/schedules.js') }}"></script>
         <script src="{{ asset('assets/js/pages/calendar.init.js') }}"></script>
+        </script>
+        <script>
+            function renderActivity(index, mode) {
+                $.ajax({
+                    url: '{{ route("render_activity") }}',
+                    data: {
+                        index: index,
+                        mode: mode
+                    },
+                    success: function(html) {
+                        $('#activity_modal').html(html);
+                        $('.bs-example-modal-sm').modal('toggle');
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            }
+        </script>
+        @endsection
+        @include('layouts.components.script')
 
         <!-- App js -->
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Employee;
+use App\Models\Attendance;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Events\EmployeeAdded;
@@ -25,6 +26,14 @@ class EmployeeController extends Controller
     {
         $employees = Employee::all();
         return view('employee.ajax.employee_list', compact('employees'))->render();
+    }
+
+    public function render_activity(Request $request)
+    {
+        $target = Attendance::find($request->input('index'));
+        $mode = $request->input('mode');
+        $employee = Employee::find($target->employee_id);
+        return view('attendance.ajax.activity_modal', compact('target', 'mode', 'employee'))->render();
     }
 
     public function firstValidation(Request $request)
@@ -102,24 +111,69 @@ class EmployeeController extends Controller
         }
     }
 
-    public function image_upload(Request $request)
-    {
-        $data = $_POST['image'];
-        $image_array_1 = explode(";", $data);
-        $image_array_2 = explode(",", $image_array_1[1]);
-        $data = base64_decode($image_array_2[1]);
-        $image_name = 'upload/' . time() . '.png';
-        file_put_contents($image_name, $data);
-        echo $image_name;
-        return response()->json(['success' => true]);
-    }
-
     public function view($id)
     {
         $departments = Department::all();
         $user = auth()->user();
         $employee = Employee::where('user_id', $user->id)->first();
+
         $target = Employee::find($id);
-        return view('employee.profile', compact('target', 'departments', 'employee'));
+        $attendance_data = $target->attendanceData;
+
+        if ($attendance_data->isEmpty()) {
+            $attendance_data = collect();
+        } elseif ($attendance_data->count() > 5) {
+            $attendance_data = Attendance::where('employee_id', $target->id)
+                ->orderBy('date', 'desc')
+                ->paginate(5);
+        }
+
+        return view('employee.profile', compact('target', 'departments', 'attendance_data', 'employee'));
+    }
+
+    public function custom_sort(Request $request)
+    {
+        $employees = collect();
+        $department_filter = false;
+        $gender_filter = false;
+
+        // Department Filtering
+        $department_ids = Department::pluck('id')->toArray();
+        foreach ($department_ids as $department_id) {
+            if ($request->has($department_id)) {
+                $department_filter = true;
+                $temp_employee = Employee::where('department_id', $department_id)->get();
+                $employees = $employees->merge($temp_employee);
+            }
+        }
+
+        if ($department_filter == false) {
+            $employees = Employee::all();
+        }
+
+        // Gender Filtering
+        $genderOptions = ['male', 'female', 'non_binary'];
+        $selectedGenders = [];
+
+        foreach ($genderOptions as $gender) {
+            if ($request->has($gender . '_sort')) {
+                $selectedGenders[] = $gender;
+            }
+        }
+
+        if (!empty($selectedGenders)) {
+            $gender_filter = true;
+            $employees = $employees->filter(function ($employee) use ($selectedGenders) {
+                return in_array($employee->gender, $selectedGenders);
+            });
+        }
+
+        // Name Sorting
+
+        if (!$department_filter && !$gender_filter) {
+            $employees = Employee::all();
+        }
+
+        return view('employee.ajax.employee_list', compact('employees'))->render();
     }
 }

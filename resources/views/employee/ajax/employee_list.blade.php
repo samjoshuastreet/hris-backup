@@ -1,17 +1,19 @@
-<div class="text-center">
-    <button type="button" class="btn btn-success waves-effect btn-label waves-light mb-4" data-bs-toggle="modal" data-bs-target="#firstmodal"><i class="bx bx-smile label-icon"></i>Add Employee</button>
-</div>
 <div>
     <div class="row">
-        @foreach($employees as $key => $employee)
+        @forelse($employees as $key => $employee)
         <div class="col-xl-4 col-sm-6">
             <div class="card" id="employee-card">
                 <div class="card-body">
                     <div class="d-flex align-start mb-3">
-                        <div class="flex-grow-1">
-                            <span class="badge badge-soft-success">Active</span>
+                        <div class="flex-grow-1 text-center">
+                            @if($employee->status == "active")
+                            <span class="badge badge-pill badge-soft-success mb-2">{{ ucfirst($employee->status) }}</span>
+                            @elseif($employee->status == "inactive")
+                            <span class="badge badge-pill badge-soft-danger mb-2">{{ ucfirst($employee->status) }}</span>
+                            @elseif($employee->status == "on_leave")
+                            <span class="badge badge-pill badge-soft-warning mb-2">On Leave</span>
+                            @endif
                         </div>
-                        <button type="button" class="btn btn-light btn-sm like-btn" data-bs-toggle="button"><i class="bx bx-heart"></i></button>
                     </div>
                     <div class="text-center mb-3">
                         @if($employee->employee_photo == "")
@@ -27,7 +29,7 @@
                     <div class="d-flex mb-3 justify-content-between gap-2 text-muted">
                         <div>
                             <h6><span <i class="bx bx-buildings me-1"></i></span>Department</h6>
-                            <h4>{{ $employee->department_id }}</h4>
+                            <h4>{{ $employee->department_name }}</h4>
                         </div>
                         <div>
                             <h6><span class="bx bxs-id-card me-1"></span>ID No.</h6>
@@ -52,7 +54,9 @@
                 </div>
             </div>
         </div>
-        @endforeach
+        @empty
+        <h4>No Records Found</h4>
+        @endforelse
     </div>
     <!-- end row -->
 </div>

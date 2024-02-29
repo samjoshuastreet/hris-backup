@@ -19,6 +19,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/sidebar/reload', [HomeController::class, 'render_sidebar'])->name('render_sidebar');
 
+Route::get('/forget', [AuthController::class, 'forget'])->name('forget');
+Route::get('/login_new', [AuthController::class, 'login_new'])->name('login_new');
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/logout_user', [LoginController::class, 'logout_user'])->name('logout_user');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -54,6 +57,9 @@ Route::get('/thirdValidation/employee', [EmployeeController::class, 'thirdValida
 Route::post('/fourthValidation/employee', [EmployeeController::class, 'fourthValidation'])->name('fourthValidation');
 
 Route::post('/employee/image_upload', [EmployeeController::class, 'image_upload'])->name('image_upload');
+Route::get('/employee/render_activity', [EmployeeController::class, 'render_activity'])->name('render_activity');
+Route::get('/employee/custom_sort', [EmployeeController::class, 'custom_sort'])->name('custom_sort');
+
 
 Route::get('/employees', [EmployeeController::class, 'index']);
 

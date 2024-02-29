@@ -30,11 +30,11 @@
                         </tr>
                         <tr>
                             <th class="py-3" scope="row" style="font-size: 0.75rem;">Department</th>
-                            <td class="py-3" style="font-size: 0.75rem;">{{ $target->department_id }}</td>
+                            <td class="py-3" style="font-size: 0.75rem;">{{ $target->department_name }}</td>
                         </tr>
                         <tr>
                             <th class="py-3" scope="row" style="font-size: 0.75rem;">Gender</th>
-                            <td class="py-3" style="font-size: 0.75rem;">{{ $target->gender }}</td>
+                            <td class="py-3" style="font-size: 0.75rem;">{{ ucfirst($target->gender) }}</td>
                         </tr>
                         <tr>
                             <th class="py-3" scope="row" style="font-size: 0.75rem;">Contact Number</th>
@@ -46,7 +46,7 @@
                         </tr>
                         <tr>
                             <th class="py-3" scope="row" style="font-size: 0.75rem;">Date of Birth</th>
-                            <td class="py-3" style="font-size: 0.75rem;">{{ $target->date_of_birth }}</td>
+                            <td class="py-3" style="font-size: 0.75rem;">{{ \Carbon\Carbon::parse($target->date_of_birth)->format('F j, Y') }}</td>
                         </tr>
                         <tr>
                             <th class="py-3" scope="row" style="font-size: 0.75rem;">Permanent Address</th>

@@ -79,7 +79,7 @@ class LoginController extends Controller
     {
         try {
             Auth::logout();
-            return redirect()->route('login')->with('success', 'User logged out successfully!');
+            return redirect()->route('login');
         } catch (\Exception $e) {
             Log::error('Logout failed: ' . $e->getMessage());
             // You can handle the error in a way that makes sense for your application
